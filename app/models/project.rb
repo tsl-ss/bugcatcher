@@ -8,4 +8,6 @@ class Project < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { scope: :user }
   validates :description, presence: true
 
+  accepts_nested_attributes_for :screenshots, allow_destroy: true
+
 end
