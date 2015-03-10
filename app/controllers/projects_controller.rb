@@ -2,7 +2,6 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
 
   def show
-    render "Show"
   end
 
   def new
@@ -10,11 +9,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project.screenshots.build
   end
 
   def update
     if @project.update(project_params)
-      redirect_to :back, notice: 'Project was successfully updated.'
+      redirect_to @project, notice: 'Project was successfully updated.'
     else
       render 'edit'
     end
@@ -28,6 +28,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description, :url)
+      params.require(:project).permit(:name, :description, :url, screenshots_attributes: [:id, :image, :_destroy])
     end
 end

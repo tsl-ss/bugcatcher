@@ -1,20 +1,25 @@
-<%= form_for @project do |project_form| %>
-  <%= project_form.label :name %>
-  <%= project_form.text_field :name %>
+<%= form_for @project do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
   </br>
 
-  <%= project_form.label :description %>
-  <%= project_form.text_area :description %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
 
   </br>
 
-  <%= project_form.label :url %>
-  <%= project_form.text_field :url %>
-
-  <!-- screenshot -->
+  <%= f.label :url %>
+  <%= f.text_field :url %>
 
   </br>
 
-  <%= project_form.submit %>
+  <%= f.fields_for :screenshots do |f| %>
+    <%= render partial: 'screenshot_fields', locals: { f: f } %>
+  <% end %>
+  </br>
+  <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
+  </br>
+
+  <%= f.submit %>
 <% end %>

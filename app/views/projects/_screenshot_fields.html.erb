@@ -1,0 +1,10 @@
+
+<fieldset>
+<% if f.object.new_record? %>
+  <%= f.file_field :image %>
+<% else %>
+  <%= image_tag(f.object.image.url(:thumb)) %>
+  <%= f.label :_destroy, "Remove Screenshot" %>
+  <%= f.check_box :_destroy %>
+<% end %>
+</fieldset>
