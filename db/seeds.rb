@@ -1,22 +1,18 @@
 user_info = [
 {
   :email => "user1@example.com",
-  :password => "topsecret",
 },
 {
   :email => "user2@example.com",
-  :password => "topsecret",
 },
 {
   :email => "user3@example.com",
-  :password => "topsecret",
 }
 ]
 
 user_info.each do |user|
   u = User.new
   u.email = user[:email]
-  u.password = user[:password]
   u.save
 end
 
