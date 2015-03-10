@@ -1,10 +1,11 @@
 <div class="container">
   <h2 class="page-header">Sign up</h2>
 
-  <form class="form-horizontal">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
 
     <%= devise_error_messages! %>
+
     <div class="form-group">
       <%= f.label :email, "Email", :class => "col-sm-offset-1 col-sm-2 control-label" %>
       <div class="col-sm-6">
@@ -12,7 +13,7 @@
       </div>
     </div>
     <div class="form-group">
-    <%= f.label :password, "Password", :class => "col-sm-offset-1 col-sm-2 control-label" %>
+      <%= f.label :password, "Password", :class => "col-sm-offset-1 col-sm-2 control-label" %>
       <div class="col-sm-6">
       <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
           <% if @validatable %>
@@ -34,10 +35,9 @@
       </div>
     </div>
 
-    <% end %>
+  <% end %>
 
-    <hr>
-    Already have an account?&nbsp;<%= render "devise/shared/links" %>
-    </div>
-  </form>
+  <hr>
+  Already have an account?&nbsp;<%= render "devise/shared/links" %>
+
 </div>
