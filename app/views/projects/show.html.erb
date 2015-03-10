@@ -1,1 +1,106 @@
-Show
+<div class="row">
+  <div class="col-md-4">
+    <% if @project.logo.present? %>
+      <%= image_tag @project.logo.url %>
+    <% else %>
+      <div class="add-image-container">
+        <%= link_to "Add an image", "#" %>
+      </div>
+    <% end %>
+
+    <div class="project-description">
+      <h2><%= @project.name %></h2>
+      <%= link_to "Visit webpage", @project.url %> |
+      <%= link_to "Edit project", edit_project_url(@project) %>
+    </div>
+
+    <hr />
+
+    <p class="project-description"><%= @project.description %></p>
+  </div>
+
+  <div class="col-md-8">
+    <h4>Project Screenshots:</h4>
+    <hr />
+    <% if @screenshots.empty? %>
+      <div class="add-image-container add-screenshot-container">
+        <%= link_to "Add some screenshots of your project", "#" %>
+      </div>
+    <% else %>
+      <% @screenshots.each do |screenshot| %>
+        <%= image_tag @screenshot.image.url %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Current Release:</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <h4>Commenting on topics</h4>
+    <p>
+      We need your comments!. Please visit our topics page and pick a few to add comments to. We want to make sure there are no bugs in any of the comment formats so add text, pictures and links. Thanks everyone!
+    </p>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <p><%= link_to "Edit Release Info", "#", class: "btn btn-primary" %></p>
+    <p><%= link_to "Close Release", "#" %></p>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Past Releases:</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h4>Adding a new topic</h4>
+    <p><em>Closed March 7th, 2015</em></p>
+    <p>
+      We're testing out adding new topics. We'd like feedback on whether the flow is easy to follow and that there isn't any important information missing. Add as many different ideas as possible. Thanks!
+    </p>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <p><strong>10 participants</strong></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h4>Sign in / Sign out</h4>
+    <p><em>Closed February 19th, 2015</em></p>
+    <p>
+      We just installed the Devise gem and we really don't like it, but we want you to try it out. All we want you testers to do is click a sign in link, sign in with your user info and then sign out. We'll keep an eye on the logs to make sure nothing goofy is happening.
+    </p>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <p><strong>25 participants</strong></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h4>User sign up</h4>
+    <p><em>Closed February 1st, 2015</em></p>
+    <p>
+      We're testing our user sign up process. We'd like feedback on whether the flow is easy to follow and that there isn't any important information missing. Please try signing up from the homepage as well as from the project page. Thanks!
+    </p>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <p><strong>15 participants</strong></p>
+  </div>
+</div>
