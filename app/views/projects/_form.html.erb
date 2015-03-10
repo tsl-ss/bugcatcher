@@ -1,1 +1,20 @@
-<h1>form</h1>
+<%= form_for @project do |project_form| %>
+  <%= project_form.label :name %>
+  <%= project_form.text_field :name %>
+
+  </br>
+
+  <%= project_form.label :description %>
+  <%= project_form.text_area :description %>
+
+  </br>
+
+  <%= project_form.label :url %>
+  <%= project_form.text_field :url %>
+
+  <!-- screenshot -->
+
+  </br>
+
+  <%= project_form.submit %>
+<% end %>

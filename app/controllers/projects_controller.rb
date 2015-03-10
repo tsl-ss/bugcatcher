@@ -1,11 +1,33 @@
 class ProjectsController < ApplicationController
-  before_action 
+  before_action :set_project, only: [:show, :edit, :update]
+
+  def show
+    render "Show"
+  end
 
   def new
     @project = Project.new
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
+
+  def update
+    if @project.update(project_params)
+      redirect_to :back, notice: 'Project was successfully updated.'
+    else
+      render 'edit'
+    end
+
+  end
+
+  private
+
+    def set_project
+      @project = Project.find(params[:id])
+    end
+
+    def project_params
+      params.require(:project).permit(:name, :description, :url)
+    end
 end
