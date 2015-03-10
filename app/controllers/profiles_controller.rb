@@ -1,11 +1,11 @@
-class UsersController < ApplicationController
+class ProfilesController < ApplicationController
   # Remove this one you integrate Devise
   helper_method :current_user
 
   def update
     respond_to do |format|
       if current_user.update(user_params)
-        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to profile_url, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: current_user }
       else
         format.html { render :edit }
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     current_user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to profile_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
