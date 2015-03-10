@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
 
   def show
-    render "Show"
+    @screenshots = @project.screenshots
   end
 
   def new
