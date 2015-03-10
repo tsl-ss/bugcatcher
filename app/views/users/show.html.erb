@@ -1,42 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <%= image_tag @user.avatar.url(:medium) %>
+  <%= image_tag current_user.avatar.url(:medium) %>
 </p>
 
 <p>
   <strong>Name:</strong>
-  <%= @user.name %>
+  <%= current_user.name %>
 </p>
 
 <p>
   <strong>Bio:</strong>
-  <%= @user.bio %>
+  <%= current_user.bio %>
 </p>
 
 <p>
   <strong>Email:</strong>
-  <%= @user.email %>
+  <%= current_user.email %>
 </p>
 
 <p>
   <strong>Github:</strong>
-  <%= @user.github %>
+  <%= current_user.github %>
 </p>
 
 <p>
   <strong>Linkedin:</strong>
-  <%= @user.linkedin %>
+  <%= current_user.linkedin %>
 </p>
 
 <p>
   <strong>Twitter:</strong>
-  <%= @user.twitter %>
+  <%= current_user.twitter %>
 </p>
 
 <p>
   <strong>Facebook:</strong>
-  <%= @user.facebook %>
+  <%= current_user.facebook %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Edit', edit_users_path %>

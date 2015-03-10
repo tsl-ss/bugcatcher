@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   # Routes for User resource
-  resources :users, except: [:index]
+  resource :users, except: [:new, :create]
 end
