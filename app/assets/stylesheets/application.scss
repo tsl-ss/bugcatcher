@@ -1,6 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.project-thumbnail {
+  border-right: 1px solid #EEE;
+}
+
 .add-image-container {
   height: 150px;
   width: 100%;
