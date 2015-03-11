@@ -11,40 +11,84 @@
       </ul>
     </div>
   <% end %>
-
+<form class="form-horizontal">
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.file_field :avatar %>
+   </div>
   </div>
+ </div>
 
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
+   </div>
   </div>
+ </div>
+
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.label :bio %><br>
     <%= f.text_area :bio %>
+   </div>
   </div>
+ </div>
+
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
+   </div>
   </div>
+ </div>
+
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.label :github %><br>
     <%= f.text_field :github %>
+   </div>
   </div>
+ </div>
+
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.label :linkedin %><br>
     <%= f.text_field :linkedin %>
+   </div>
   </div>
+ </div>
+
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.label :twitter %><br>
     <%= f.text_field :twitter %>
+   </div>
   </div>
+ </div>
+
+ <div class="row">
   <div class="field">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.label :facebook %><br>
     <%= f.text_field :facebook %>
+   </div>
   </div>
+ </div>
+
+ <div class="row">
   <div class="actions">
+   <div class=".col-xs-12 .col-md-8">
     <%= f.submit %>
+   </div>
   </div>
+ </div>
+</form>
 <% end %>
