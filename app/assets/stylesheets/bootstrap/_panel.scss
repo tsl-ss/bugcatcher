@@ -1,0 +1,12 @@
+.panel {
+  margin-bottom: 0; //$line-height-computed;
+  text-align: center;
+}
+
+.panel-title {
+  font-size: ceil(($font-size-base * 2));
+}
+
+.panel-users {
+  @include panel-variant($panel-default-border, $panel-default-text, white, none);
+}

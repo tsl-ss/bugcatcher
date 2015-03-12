@@ -1,0 +1,35 @@
+.navbar-brand {
+  float: left;
+  padding: $navbar-padding-vertical $navbar-padding-horizontal;
+  font-size: $font-size-large;
+  line-height: $line-height-computed;
+  height: $navbar-height;
+  @media (max-width: $screen-xs-max) {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+    text-align: center;
+  }
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+  > img {
+    display: inline-block;
+
+    // Custom Code
+    height: 60px;
+  }
+
+  @media (min-width: $grid-float-breakpoint) {
+    .navbar > .container &,
+    .navbar > .container-fluid & {
+      margin-left: -$navbar-padding-horizontal;
+    }
+  }
+}
+
+#signin-nav, #signup-nav {
+  display: none;
+}
