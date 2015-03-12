@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resource :profile, except: [:new, :create]
-  resources :projects
-  resources :releases
+  resources :projects do
+    resources :releases
+  end
 end
