@@ -23,31 +23,31 @@ project_info = [
   :name => "A-Lister",
   :description => "Right app, right time",
   :url => "http://www.google.com",
-  :user_id => "1"
+  :user_id => User.first
 },
 {
   :name => "D-League",
   :description => "Play basketball with anyone in the city at any time",
   :url => "http://www.starterleague.com",
-  :user_id => "2"
+  :user_id => User.second
 },
 {
   :name => "Cardstock",
   :description => "Connecting teachers with parents to better student experience",
   :url => "http://www.nba.com",
-  :user_id => "3"
+  :user_id => User.third
 },
 {
   :name => "Crowdgate",
   :description => "Uber for Tailgating",
   :url => "http://www.nfl.com",
-  :user_id => "1"
+  :user_id => User.first
 },
 {
   :name => "Streamline",
   :description => "Helps you list equipment in more places in less time",
   :url => "http://www.yahoo.com",
-  :user_id => "3"
+  :user_id => User.third
 }
 ]
 
