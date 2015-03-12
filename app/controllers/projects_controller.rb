@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    @project.screenshots.build
   end
 
   def edit
