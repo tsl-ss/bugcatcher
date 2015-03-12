@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :owner, class_name: "User", foreign_key: "user_id"
   has_many :screenshots
 
-  has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "default_bug_logo.png"
 
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
   validates :name, presence: true, uniqueness: { scope: :user_id }

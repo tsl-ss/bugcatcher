@@ -9,6 +9,15 @@ class ProjectsController < ApplicationController
     @screenshots = @project.screenshots
   end
 
+  def create
+    @project = Project.new(project_params)
+    if @project.save
+      redirect_to @project
+    else
+      render 'new'
+    end
+  end
+
   def new
     @project = Project.new
   end
