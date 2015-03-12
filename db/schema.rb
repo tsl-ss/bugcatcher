@@ -18,9 +18,28 @@ ActiveRecord::Schema.define(version: 20150310190712) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.text     "description"
+    t.string   "url"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
+
+  create_table "screenshots", force: :cascade do |t|
+    t.integer  "project_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "screenshots", ["project_id"], name: "index_screenshots_on_project_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -50,4 +69,6 @@ ActiveRecord::Schema.define(version: 20150310190712) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "projects", "users"
+  add_foreign_key "screenshots", "projects"
 end
