@@ -1,11 +1,11 @@
 <div class="container">
   <div class="jumbotron mainJumbo">
     <div class="row">
-      <div class="col-sm-8 info-box">
+      <div class="col-md-8 info-box">
         <h1>Bug Catcher</h1>
-        <p>Bug catcher helps you iterate through user testing faster by crowd sourcing the work</p>
+        <p>Iterate through user testing faster by crowd sourcing the work</p>
       </div>
-      <div class="col-sm-4">
+      <div class="col-md-4">
         <div class="signup-card">
           <div class="signup-tabs">
             <div class="col-xs-6 tab active" id="signup-tab">Sign Up</div>
@@ -23,7 +23,10 @@
             <%= form_tag 'google.com' do %>
               <%= text_field_tag :username, nil, placeholder: "username", class: "form-control" %>
               <%= password_field_tag :password, nil, placeholder: "password", class: "form-control" %>
-              <%= check_box_tag :remember, nil, false, class: 'form-control' %>
+              <div class="form-control remember-me">
+                <%= check_box_tag :remember, nil, false %>
+                <%= label_tag :remember, "Remember me" %>
+              </div>
               <%= submit_tag "Sign In", class: "btn btn-primary form-control" %>
             <% end %>
           </div>

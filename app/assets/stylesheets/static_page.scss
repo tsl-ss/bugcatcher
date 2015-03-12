@@ -8,6 +8,7 @@
   margin: 0 auto;
   background-color: $gray-lighter;
   border: 1px solid rgba(0,0,0,.2);
+  @media (max-width: $screen-sm-max) { margin-top: 40px; }
   .signup-tabs {
     color: $gray-darker;
     .tab {
@@ -26,6 +27,12 @@
     .form-control {
       margin-bottom: 10px;
       border-radius: 0;
+    }
+    .remember-me {
+      background-color: inherit;
+      border: 0;
+      box-shadow: none;
+      text-align: left;
     }
   }
   #signin-form {
