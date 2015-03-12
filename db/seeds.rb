@@ -1,12 +1,15 @@
 user_info = [
 {
   :email => "user1@example.com",
+  :password => "12345678"
 },
 {
   :email => "user2@example.com",
+  :password => "12345678"
 },
 {
   :email => "user3@example.com",
+  :password => "12345678"
 }
 ]
 
