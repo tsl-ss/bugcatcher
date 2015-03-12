@@ -4,17 +4,22 @@
   font-size: $font-size-large;
   line-height: $line-height-computed;
   height: $navbar-height;
-
+  @media (max-width: $screen-xs-max) {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+    text-align: center;
+  }
   &:hover,
   &:focus {
     text-decoration: none;
   }
-
   > img {
-    display: block;
+    display: inline-block;
 
     // Custom Code
-    height: $line-height-computed;
+    height: 60px;
   }
 
   @media (min-width: $grid-float-breakpoint) {
@@ -23,4 +28,8 @@
       margin-left: -$navbar-padding-horizontal;
     }
   }
+}
+
+#signin-nav, #signup-nav {
+  display: none;
 }

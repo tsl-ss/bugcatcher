@@ -1,6 +1,6 @@
 .jumbotron {
   padding: $jumbotron-padding ($jumbotron-padding / 2);
-  margin-bottom: $jumbotron-padding;
+  margin-bottom: 0; // $jumbotron-padding;
   color: $jumbotron-color;
   background-color: $jumbotron-bg;
   text-align: center;
