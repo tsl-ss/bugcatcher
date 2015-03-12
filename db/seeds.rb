@@ -16,6 +16,7 @@ user_info = [
 user_info.each do |user|
   u = User.new
   u.email = user[:email]
+  u.password = user[:password]
   u.save
 end
 
