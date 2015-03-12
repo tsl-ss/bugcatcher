@@ -1,10 +1,19 @@
 
 <fieldset>
 <% if f.object.new_record? %>
-  <%= f.file_field :image %>
+  <div class="form-group">
+    <%= f.label :image, "New Screenshot" %>
+    <%= f.file_field :image %>
+  </div>
 <% else %>
-  <%= image_tag(f.object.image.url(:thumb)) %>
-  <%= f.label :_destroy, "Remove Screenshot" %>
-  <%= f.check_box :_destroy %>
+  <div class="media">
+    <div class="media-left media-middle">
+      <%= image_tag(f.object.image.url(:medium), class: "media-object") %>
+    </div>
+    <div class="media-body">
+      <%= f.check_box :_destroy %>
+      <%= f.label :_destroy, "Remove Screenshot" %>
+    </div>
+  </div>
 <% end %>
 </fieldset>

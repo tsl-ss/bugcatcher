@@ -14,10 +14,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project.screenshots.build
   end
 
   def update
+    if params[:delete_logo] == "1"
+      @project.logo = nil
+    end
     if @project.update(project_params)
       redirect_to @project, notice: 'Project was successfully updated.'
     else
@@ -33,6 +35,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description, :url, screenshots_attributes: [:id, :image, :_destroy])
+      params.require(:project).permit(:name, :logo, :description, :url, screenshots_attributes: [:id, :image, :_destroy])
     end
 end
