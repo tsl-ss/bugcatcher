@@ -1,0 +1,5 @@
+<% if release.open? %>
+  <%= render partial: 'releases/open_release', locals: { release: release } %>
+<% else %>
+  <%= render partial: 'releases/closed_release', locals: { release: release } %>
+<% end %>
