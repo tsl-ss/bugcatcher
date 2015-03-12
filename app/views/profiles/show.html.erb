@@ -4,39 +4,67 @@
   <%= image_tag current_user.avatar.url(:medium) %>
 </p>
 
-<p>
+<div class="row">
+ <div class=".col-xs-12 .col-md-8">
+  <p>
   <strong>Name:</strong>
   <%= current_user.name %>
-</p>
+  </p>
+ </div>
+</div>
 
-<p>
+<div class="row">
+ <div class=".col-xs-12 .col-md-8">
+  <p>
   <strong>Bio:</strong>
   <%= current_user.bio %>
-</p>
+  </p>
+ </div>
+</div>
 
-<p>
+<div class="row">
+ <div class=".col-xs-12 .col-md-8">
+  <p>
   <strong>Email:</strong>
   <%= current_user.email %>
-</p>
+  </p>
+ </div>
+</div>
 
-<p>
+<div class="row">
+ <div class=".col-xs-12 .col-md-8">
+  <p>
   <strong>Github:</strong>
   <%= current_user.github %>
-</p>
+  </p>
+ </div>
+</div>
 
-<p>
+<div class="row">
+ <div class=".col-xs-12 .col-md-8">
+  <p>
   <strong>Linkedin:</strong>
   <%= current_user.linkedin %>
-</p>
+  </p>
+ </div>
+</div>
 
-<p>
+<div class="row">
+ <div class=".col-xs-12 .col-md-8">
+  <p>
   <strong>Twitter:</strong>
   <%= current_user.twitter %>
-</p>
+  </p>
+ </div>
+</div>
 
-<p>
+<div class="row">
+ <div class=".col-xs-12 .col-md-8">
+  <p>
   <strong>Facebook:</strong>
   <%= current_user.facebook %>
-</p>
+  </p>
+ </div>
+</div>
 
 <%= link_to 'Edit', edit_profile_url %>
