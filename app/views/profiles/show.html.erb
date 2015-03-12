@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= image_tag current_user.avatar.url(:medium), class: "img-rounded" %>
+</p>
+
+<div class="panel panel-default">
+  <div class="row panel-body">
+    <div class=".col-xs-12 .col-md-8">
+      <p>
+        <strong class="label label-default label-info">Name:</strong>
+        <%= current_user.name %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row panel-body">
+    <div class=".col-xs-12 .col-md-8">
+      <p>
+        <strong class= "label label-default label-info">Bio:</strong>
+        <%= current_user.bio %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row panel-body">
+    <div class=".col-xs-12 .col-md-8">
+      <p>
+        <strong class= "label label-default label-info">Email:</strong>
+        <%= current_user.email %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row panel-body">
+    <div class=".col-xs-12 .col-md-8">
+      <p>
+        <strong class= "label label-default label-info">Github:</strong>
+        <%= current_user.github %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row panel-body">
+    <div class=".col-xs-12 .col-md-8">
+      <p>
+        <strong class= "label label-default label-info">Linkedin:</strong>
+        <%= current_user.linkedin %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row panel-body">
+    <div class=".col-xs-12 .col-md-8">
+      <p>
+        <strong class= "label label-default label-info">Twitter:</strong>
+        <%= current_user.twitter %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row panel-body">
+    <div class=".col-xs-12 .col-md-8">
+      <p>
+        <strong class= "label label-default label-info">Facebook:</strong>
+        <%= current_user.facebook %>
+      </p>
+    </div>
+  </div>
+
+  <%= link_to 'Edit your Profile', edit_profile_url, class: "btn btn-primary" %>
+</div>
