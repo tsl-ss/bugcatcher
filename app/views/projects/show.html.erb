@@ -28,7 +28,7 @@
       </div>
     <% else %>
       <% @screenshots.each do |screenshot| %>
-        <%= image_tag @screenshot.image.url %>
+        <%= image_tag screenshot.image.url %>
       <% end %>
     <% end %>
   </div>
