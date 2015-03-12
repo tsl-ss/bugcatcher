@@ -4,5 +4,11 @@ class Release < ActiveRecord::Base
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :open, presence: true
+
+  scope :open, -> { where(open: true) }
+  scope :closed, -> { where(open: false) }
+
+  def close_release
+    self.open = false
+  end
 end
