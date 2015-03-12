@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.0'
 
 gem 'aws-sdk'
+gem 'devise'
 gem 'rails', '4.2.0'
 gem 'pg'
 gem 'rollbar', '~> 1.4.4'
