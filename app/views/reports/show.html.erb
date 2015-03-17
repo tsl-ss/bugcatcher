@@ -1,12 +1,11 @@
 <div class="container">
-  <% if @report.release.project.owner == current_user || @report.accepted_by_project_owner == nil  %>
+  <% if @report.release.project.owner == current_user && @report.accepted_by_project_owner == nil  %>
     <div class="row" id="acceptAlertBox">
       <div class="alert alert-info" role="alert">
         <p class="lead" style="color: white;">
           This is a new report. Please review and either accept or deny this report.
         </p>
         <br>
-
         <%= link_to 'Accept this Report', report_accepted_url(@report), class: 'btn btn-success', remote: true %>
         <%= link_to 'Deny this Report', report_denied_url(@report), class: 'btn btn-danger', remote: true %>
       </div>
