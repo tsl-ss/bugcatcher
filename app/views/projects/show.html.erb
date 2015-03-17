@@ -8,7 +8,10 @@
       <div class="project-description">
         <h2><%= @project.name %></h2>
         <%= link_to "Visit webpage", @project.url %> |
-        <%= link_to "Edit project", edit_project_url(@project) %>
+
+        <% if current_user == @project.owner %>
+          <%= link_to "Edit project", edit_project_url(@project) %>
+        <% end %>
       </div>
 
       <hr />
