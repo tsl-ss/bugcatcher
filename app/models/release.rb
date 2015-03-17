@@ -5,7 +5,7 @@ class Release < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
 
-  before_create :close_project_releases
+  before_create :close_any_open_project_releases
 
   accepts_nested_attributes_for :screenshots, allow_destroy: true
 
@@ -23,7 +23,7 @@ class Release < ActiveRecord::Base
 
   private
 
-    def close_project_releases
+    def close_any_open_project_releases
       self.project.releases.open.each do |project_release|
         project_release.close_release!
       end

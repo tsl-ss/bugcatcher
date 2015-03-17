@@ -1,6 +1,6 @@
 class ReleasesController < ApplicationController
-  before_action :set_project, only: [:new, :create, :edit, :update, :show]
-  before_action :set_release, only: [:edit, :show, :update, :close]
+  before_action :set_project, only: [:new, :create, :edit, :update, :show, :destroy]
+  before_action :set_release, only: [:edit, :show, :update, :close, :destroy]
 
   def new
     @release = @project.releases.build
@@ -28,6 +28,7 @@ class ReleasesController < ApplicationController
   end
 
   def show
+    @screenshots = @release.screenshots
   end
 
   def close
@@ -36,7 +37,9 @@ class ReleasesController < ApplicationController
     redirect_to :back
   end
 
-  def delete
+  def destroy
+    @release.destroy
+    redirect_to @project, notice: 'Release was successfully deleted'
   end
 
   private
