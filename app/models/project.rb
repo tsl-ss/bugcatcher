@@ -10,6 +10,7 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
   validates :name, presence: true, uniqueness: { scope: :user_id }
   validates :description, presence: true
+  validates :owner, presence: true
 
   accepts_nested_attributes_for :screenshots, allow_destroy: true
 end
