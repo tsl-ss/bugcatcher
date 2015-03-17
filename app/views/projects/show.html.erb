@@ -9,7 +9,10 @@
 
       <div class="project-description">
         <%= link_to "Visit webpage", @project.url %> |
-        <%= link_to "Edit project", edit_project_url(@project) %>
+
+        <% if current_user == @project.owner %>
+          <%= link_to "Edit project", edit_project_url(@project) %>
+        <% end %>
       </div>
 
       <hr/>
