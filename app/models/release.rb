@@ -5,6 +5,8 @@ class Release < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
 
+  before_create :close_project_releases
+
   accepts_nested_attributes_for :screenshots, allow_destroy: true
 
   scope :open, -> { where(open: true) }
@@ -13,4 +15,17 @@ class Release < ActiveRecord::Base
   def close_release
     self.open = false
   end
+
+  def close_release!
+    self.close_release
+    self.save
+  end
+
+  private
+
+    def close_project_releases
+      self.project.releases.open.each do |project_release|
+        project_release.close_release!
+      end
+    end
 end
