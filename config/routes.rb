@@ -17,4 +17,12 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/report_accepted/:id',   :controller => "reports",
+                                :action => "report_accepted",
+                                :as => "report_accepted"
+
+  get '/report_denied/:id',     :controller => "reports",
+                                :action => "report_denied",
+                                :as => "report_denied"
+
 end

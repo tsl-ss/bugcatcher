@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
-  before_action :set_project_release
-  before_action :set_report, :only => [:show]
+  before_action :set_project_release, :except => [:report_accepted]
+  before_action :set_report, :only => [:show, :report_accepted]
   before_action :set_report_with_current_user, :only => [:edit, :destroy, :update]
 
   def new
@@ -31,6 +31,17 @@ class ReportsController < ApplicationController
     @report.author = current_user
     @report.save
     redirect_to project_release_report_url(params[:project_id], params[:release_id], @report)
+  end
+
+  def report_accepted
+    @report.accepted_by_project_owner = true
+    @report.save
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def report_denied
   end
 
   def report_params
