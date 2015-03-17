@@ -1,5 +1,12 @@
 <div class="container">
-  <div class="row">
-    <%= render @projects %>
-  </div>
+
+  <% if @projects.count < 1 %>
+    <h3>You Have No Projects<h3>
+    <p><%= link_to "Add New Project", "projects/new", class: "btn btn-primary"%></p>
+  <% else %>
+    <div class="row">
+      <%= render @projects %>
+    </div>
+  <% end %>
+
 </div>
