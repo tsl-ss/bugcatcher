@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   super
+  #  super
   # end
 
   # GET /resource/edit
@@ -38,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def after_sign_up_path_for(user)
+  def after_sign_up_path_for(resource)
     projects_url
   end
 
