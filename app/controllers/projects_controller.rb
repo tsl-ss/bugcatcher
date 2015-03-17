@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @projects = Project.order(:name).page params[:page]
   end
 
   def show

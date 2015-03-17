@@ -7,3 +7,5 @@ $(document).ready(function() {
     return event.preventDefault();
   });
 });
+
+$(document).on('page:load', ready);
