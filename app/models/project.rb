@@ -12,4 +12,7 @@ class Project < ActiveRecord::Base
   validates :description, presence: true
 
   accepts_nested_attributes_for :screenshots, allow_destroy: true
+
+  paginates_per 10
+
 end
