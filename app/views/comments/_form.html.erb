@@ -1,0 +1,12 @@
+<%= form_for comment do |f| %>
+  <h4>Add new comment</h4>
+
+  <div class="field">
+    <%= f.text_area :text %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
