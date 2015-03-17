@@ -1,7 +1,16 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_user, :only => [:create, :edit, :update, :destroy]
+
+
+  def authorize_user
+
+    unless current_user == @project.user_id
+      redirect_to root_url, :alert => "Access denied. Not authorized for this action."
+    end
+  end
+
 
   def index
     @projects = Project.all
@@ -13,6 +22,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.user_id = current_user
+
     if @project.save
       redirect_to @project
     else
@@ -29,6 +40,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project.user_id = current_user
+
     if params[:delete_logo] == "1"
       @project.logo = nil
     end
@@ -37,7 +50,11 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end
+  end
 
+  def destroy
+    @project.destroy
+    redirect_to project_release_path, notice: 'Project was successfully destroyed.'
   end
 
   private
