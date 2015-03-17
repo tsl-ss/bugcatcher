@@ -9,7 +9,8 @@
         <h2><%= @project.name %> &#8226; <%= @release.title %></h2>
         <%= link_to "Close release", close_project_release_url(@project, @release) %> |
         <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
-        <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
+        <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>|
+        <%= link_to "Add New Report", new_project_release_report_url(@project, @release) %>
       </div>
 
       <hr />
