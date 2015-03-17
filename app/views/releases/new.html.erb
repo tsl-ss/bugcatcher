@@ -1,24 +1,31 @@
 <div class="container">
-  <%= form_for [@project, @release], method: :post do |f| %>
-    <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :description %>
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag "screenshots" %>
-      <%= f.fields_for :screenshots do |fields| %>
-        <%= render '/projects/screenshot_fields', { f: fields } %>
+  <div class="row">
+    <div class="col-md-12">
+      <h1>New Release</h1>
+      <%= form_for @release, url: project_releases_url(@project), method: "post" do |f| %>
+        <div class="form-group">
+          <%= f.label :title, class: "form-control" %>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description, class: "form-control" %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+
+        <%= label_tag "screenshots" %>
+        <%= f.fields_for :screenshots do |builder| %>
+          <%= render partial: 'screenshot_fields', locals: { f: builder } %>
+        <% end %>
+        </br>
+        <p>
+        <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
+        </p>
+
+        <div class="form-group">
+          <%= f.submit class: "btn btn-default" %>
+        </div>
       <% end %>
-      </br>
-      <p>
-      <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
     </div>
-    <div class="form-group">
-      <%= f.submit class: "btn btn-default" %>
-    </div>
-  <% end %>
+  </div>
 </div>

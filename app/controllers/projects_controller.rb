@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project.screenshots.build
   end
 
   def destroy
@@ -41,7 +42,6 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end
-
   end
 
   private
