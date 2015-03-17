@@ -1,6 +1,7 @@
 class Release < ActiveRecord::Base
   belongs_to :project
   has_many :screenshots, as: :screenshotable
+  has_many :reports
 
   validates :title, presence: true
   validates :description, presence: true
