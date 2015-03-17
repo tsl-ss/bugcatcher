@@ -1,18 +1,7 @@
-
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-
-      <%= form_for @report,
-          url: project_release_reports_url(@project, @release),
-          method: "post" do |f| %>
-
-        <%= f.label :content, "Enter your report content here", class: 'control-label' %>
-        <%= f.text_area :content, class: 'form-control' %>
-        <hr/>
-        <%= f.submit class: 'btn btn-success' %>
-      <% end %>
-
+      <%= render 'form' %>
     </div>
   </div>
 </div>
