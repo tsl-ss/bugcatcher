@@ -4,7 +4,7 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
   test "User - Registration Test" do
     get "/users/sign_up"
     post_via_redirect "/users", user: {email: 'user@email.com', password: '12345678', password_confirmation: '12345678'}
-    assert_equal '/welcome', path
+    assert_equal '/', path
 
     get "/projects"
     assert_response :success
