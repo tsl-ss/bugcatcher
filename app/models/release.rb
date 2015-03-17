@@ -5,6 +5,8 @@ class Release < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
 
+  accepts_nested_attributes_for :screenshots, allow_destroy: true
+
   scope :open, -> { where(open: true) }
   scope :closed, -> { where(open: false) }
 

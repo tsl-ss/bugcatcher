@@ -38,8 +38,8 @@
   </div>
 
   <%= label_tag "screenshots" %>
-  <%= f.fields_for :screenshots do |f| %>
-    <%= render partial: 'screenshot_fields', locals: { f: f } %>
+  <%= f.fields_for :screenshots do |builder| %>
+    <%= render partial: 'screenshot_fields', locals: { f: builder } %>
   <% end %>
   </br>
   <p>
