@@ -1,5 +1,12 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h2>All Projects <small><%= link_to 'Add New Project', new_project_url %></small></h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <%= render @projects %>
   </div>
 </div>
