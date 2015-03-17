@@ -2,15 +2,13 @@
   border-right: 1px solid #EEE;
 }
 
-.add-image-container {
+.project-image-container {
   height: 150px;
   width: 100%;
   display: table;
+  padding: 10px;
   a {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    font-size: 18px;
+    margin-top: 10px;
   }
 }
 
@@ -19,5 +17,26 @@
   background-color: #FFF;
 }
 
+.add-project-header {
+  margin-bottom: 10px, 0, 10px, 0;
+}
+
+.projects-container {
+  margin: 10px;
+}
+
+.project-panel {
+  padding: 0;
+}
+
 .project-description {
+  text-align: left;
+  padding: 10px;
+  h3 {
+    margin-top: 0;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
