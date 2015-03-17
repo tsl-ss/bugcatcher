@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = current.projects.new
+    @project = current_user.projects.new
     @project.screenshots.build
   end
 
