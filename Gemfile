@@ -25,7 +25,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'pry-byebug'
-  gem 'rspec-rails'
+
   gem 'capybara'
   gem 'launchy'
 end
