@@ -1,31 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
+      <h2 style="margin-top: 0;"><%= @project.name %></h2>
+
       <div class="add-image-container">
-        <%= image_tag @project.logo.url %>
+        <%= image_tag @project.logo.url, class: 'img-responsive' %>
       </div>
 
       <div class="project-description">
-        <h2><%= @project.name %></h2>
         <%= link_to "Visit webpage", @project.url %> |
-        <%= link_to "Edit project", edit_project_url(@project) %>
+
+        <% if current_user == @project.owner %>
+          <%= link_to "Edit project", edit_project_url(@project) %>
+        <% end %>
       </div>
 
-      <hr />
+      <hr/>
 
-      <p class="project-description"><%= @project.description %></p>
+      <p class="project-description text-justify"><%= @project.description %></p>
     </div>
 
-    <div class="col-md-8">
-      <h4>Project Screenshots:</h4>
-      <hr />
+    <div class="col-md-8 col-md-offset-1 text-center">
+      <h4 class="text-left">Project Screenshots:</h4>
+      <hr/>
       <% if @screenshots.empty? %>
         <div class="add-image-container add-screenshot-container">
           <%= link_to "Add some screenshots of your project", "#" %>
         </div>
       <% else %>
         <% @screenshots.each do |screenshot| %>
-          <%= image_tag screenshot.image.url %>
+          <%= image_tag screenshot.image.url, class: 'img-responsive img-thumbnail', style: "max-height: 300px;" %>
+          <hr/>
         <% end %>
       <% end %>
     </div>

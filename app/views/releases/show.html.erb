@@ -1,2 +1,33 @@
-<h1>Releases#show</h1>
-<p>Find me in app/views/releases/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="add-image-container">
+        <%= image_tag @project.logo.url %>
+      </div>
+
+      <div class="project-description">
+        <h2><%= @project.name %> &#8226; <%= @release.title %></h2>
+        <%= link_to "Close release", close_project_release_url(@project, @release) %> |
+        <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
+        <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
+      </div>
+
+      <hr />
+
+      <p class="project-description"><%= @release.description %></p>
+    </div>
+  </div>
+  <% unless @screenshots.empty? %>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Screenshots for this release:</h4>
+        <hr />
+      </div>
+      <div class="col-md-4">
+        <% @screenshots.each do |screenshot| %>
+          <%= image_tag screenshot.image.url(:medium) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
