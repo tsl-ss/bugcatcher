@@ -7,7 +7,8 @@
   </div>
 
   <div class="col-md-4 text-center">
-    <p><%= link_to "Edit Release Info", edit_project_release_url(release.project.id, release.id), class: "btn btn-primary" %></p>
+    <p><%= link_to "Add New Release", new_project_release_url(release.project), class: "btn btn-primary" %></p>
+    <p><%= link_to "Edit Release Info", edit_project_release_url(release.project, release) %></p>
     <p><%= link_to "Close Release", close_project_release_url(release.project, release) %></p>
   </div>
 </div>

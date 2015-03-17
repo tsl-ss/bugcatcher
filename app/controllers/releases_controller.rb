@@ -1,5 +1,6 @@
 class ReleasesController < ApplicationController
-  before_action :set_project, only: [:new, :edit]
+  before_action :set_project, only: [:new, :create, :edit, :update, :show, :destroy]
+  before_action :set_release, only: [:edit, :show, :update, :close, :destroy]
 
   def new
     @release = @project.releases.build
@@ -7,30 +8,50 @@ class ReleasesController < ApplicationController
   end
 
   def create
-
+    @release = @project.releases.open.build(release_params)
+    if @release.save
+      redirect_to @project
+    else
+      render 'new'
+    end
   end
 
   def edit
-    @release = Release.find(:release_id)
+  end
+
+  def update
+    if @release.update(release_params)
+      redirect_to @project, notice: 'Release was successfully updated.'
+    else
+      render 'edit'
+    end
   end
 
   def show
+    @screenshots = @release.screenshots
   end
 
   def close
-    #replace after merging with the set release before_action
-    @release = Release.find(params[:id])
-    @release.close_release
+    @release.close_release!
     @release.save
     redirect_to :back
   end
 
-  def delete
+  def destroy
+    @release.destroy
+    redirect_to @project, notice: 'Release was successfully deleted'
   end
 
   private
 
     def set_project
       @project = Project.find(params[:project_id])
+    end
+    def set_release
+      @release = Release.find(params[:id])
+    end
+
+    def release_params
+      params.require(:release).permit(:title, :logo, :description, screenshots_attributes: [:id, :image, :_destroy])
     end
 end
