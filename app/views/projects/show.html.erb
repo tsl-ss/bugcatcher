@@ -2,7 +2,6 @@
   <%= link_to "< Back to Projects", projects_url %>
   <div class="row">
     <div class="col-md-3">
-      <h2 style="margin-top: 0;"><%= @project.name %></h2>
 
       <div class="add-image-container">
         <%= image_tag @project.logo.url, class: 'img-responsive' %>
@@ -16,39 +15,39 @@
         <% end %>
       </div>
 
-      <hr/>
-
-      <p class="project-description text-justify"><%= @project.description %></p>
     </div>
 
-    <div class="col-md-8 col-md-offset-1 text-center">
-      <h4 class="text-left">Project Screenshots:</h4>
+    <div class="col-md-8 col-md-offset-1">
+      <h2 style="margin-top: 0;"><%= truncate(@project.name, length: 50) %></h2>
       <hr/>
-      <% if @screenshots.empty? %>
-        <div class="add-image-container add-screenshot-container">
-          <%= link_to "Add some screenshots of your project", "#" %>
-        </div>
-      <% else %>
-        <% @screenshots.each do |screenshot| %>
-          <%= image_tag screenshot.image.url,
-              class: 'img-responsive img-thumbnail',
-              style: "max-height: 300px;" %>
-          <hr/>
-        <% end %>
-      <% end %>
+      <p class="project-description text-justify"><%= truncate(@project.description, length: 500) %></p>
     </div>
   </div>
 
-  <hr />
+  <div class="row">
+    <h4 class="page-header text-left">Project Screenshots:</h4>
+    <% if @screenshots.empty? %>
+      <div class="add-image-container add-screenshot-container">
+        <%= link_to "Add some screenshots of your project", "#" %>
+      </div>
+    <% else %>
+      <% @screenshots.each do |screenshot| %>
+        <%= image_tag screenshot.image.url(:thumb),
+            class: 'img-responsive img-thumbnail',
+            style: "max-height: 300px;" %>
+      <% end %>
+    <% end %>
+  </div>
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Releases
-        <small class="text-right">
+      <h2 class="page-header">Releases
+        <small>
           <% if @project.owner == current_user %>
-            <%= link_to 'Add New Release', new_project_release_url(@project) %>
+            <%= link_to 'Add New Release', new_project_release_url(@project), class: "btn btn-sm" %>
           <% end %>
-        </small></h2>
+        </small>
+      </h2>
     </div>
   </div>
   <% if @project.releases.any? %>

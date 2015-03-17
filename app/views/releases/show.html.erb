@@ -1,20 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
       <div class="add-image-container">
-        <%= image_tag @project.logo.url %>
+        <div class="row">
+          <%= image_tag @project.logo.url(:medium) %>
+        </div>
+        <div class="row">
+          <%= link_to "Close release", close_project_release_url(@project, @release) %> |
+          <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
+          <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
+        </div>
       </div>
-
+    </div>
+    <div class="col-md-8">
       <div class="project-description">
-        <h2><%= @project.name %> &#8226; <%= @release.title %></h2>
-        <%= link_to "Close release", close_project_release_url(@project, @release) %> |
-        <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
-        <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
+        <h2><%= truncate(@project.name, length: 50) %></h2>
+        <h2>Release: <%= truncate(@release.title, length: 40) %></h2>
       </div>
 
       <hr />
 
-      <p class="project-description"><%= @release.description %></p>
+      <p class="project-description"><%= truncate(@release.description, length: 500) %></p>
     </div>
   </div>
   <% unless @screenshots.empty? %>
@@ -25,7 +31,7 @@
       </div>
         <% @screenshots.each do |screenshot| %>
           <div class="col-md-4">
-          <%= image_tag screenshot.image.url, class: 'img-responsive img-thumbnail', style: "max-height: 300px;" %>
+          <%= image_tag screenshot.image.url(:medium) %>
           </div>
         <% end %>
     </div>

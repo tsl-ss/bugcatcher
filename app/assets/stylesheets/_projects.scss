@@ -12,11 +12,6 @@
   }
 }
 
-.add-screenshot-container {
-  height: 300px;
-  background-color: #FFF;
-}
-
 .add-project-header {
   margin-bottom: 10px, 0, 10px, 0;
 }
@@ -29,7 +24,7 @@
   padding: 0;
 }
 
-.project-description {
+.project-description-index {
   text-align: left;
   padding: 10px;
   h3 {
@@ -38,5 +33,11 @@
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+}
+.project-description {
+  padding: 0;
+  h2 {
+    margin: 0;
   }
 }
