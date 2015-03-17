@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+
   def new
   end
 
@@ -13,4 +14,5 @@ class ReportsController < ApplicationController
 
   def create
   end
+
 end
