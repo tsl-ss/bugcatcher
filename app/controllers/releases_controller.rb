@@ -17,6 +17,7 @@ class ReleasesController < ApplicationController
   end
 
   def edit
+    @release = Release.find(:release_id)
   end
 
   def show
@@ -38,7 +39,6 @@ class ReleasesController < ApplicationController
     def set_project
       @project = Project.find(params[:project_id])
     end
-
     def set_release
       @release = Release.find(params[:id])
     end
