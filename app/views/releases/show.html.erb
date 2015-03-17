@@ -31,4 +31,37 @@
       </div>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Reports</h4>
+      <hr/>
+      <ul class="list-group">
+        <% if @release.project.owner == current_user %>
+          <% @release.reports.each do |report| %>
+            <li class="list-group-item">
+              <%= link_to 'View Report', project_release_report_url(@project, @release, report), class: 'btn btn-primary' %>
+              Report #<%= report.id %> |
+              Created by <%= report.author.email %> on
+              <%= report.created_at.strftime('%B %d, %Y') %>
+              <hr/>
+              <p><%= report.content %></p>
+            </li>
+          <% end %>
+        <% else %>
+          <% @release.reports.each do |report| %>
+            <% if report.author == current_user %>
+              <li class="list-group-item">
+                <%= link_to 'View Report', project_release_report_url(@project, @release, report), class: 'btn btn-primary' %>
+                Report #<%= report.id %> |
+                Created by <%= report.author.email %> on
+                <%= report.created_at.strftime('%B %d, %Y') %>
+                <hr/>
+                <p><%= report.content %></p>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
