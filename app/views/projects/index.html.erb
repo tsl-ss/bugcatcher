@@ -8,7 +8,7 @@
         <p><%= link_to "Add New Project", "projects/new", class: "btn btn-primary"%></p>
       <% else %>
         <div class="page-header">
-          <h2>All Projects <small><%= link_to 'Add New Project', new_project_url %></small></h2>
+          <h2>All Projects <small><%= link_to "Add a project", new_project_url %></small></h2>
         </div>
         <div class="row">
           <%= render @projects %>
