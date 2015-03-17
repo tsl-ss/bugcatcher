@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-md-12">
       <h1>New Release</h1>
+
       <%= form_for @release, url: project_releases_url(@project), method: "post" do |f| %>
+        <%= render "shared/error_messages", resource: @release %>
+
         <div class="form-group">
           <%= f.label :title, class: "form-control" %>
           <%= f.text_field :title, class: "form-control" %>

@@ -9,7 +9,7 @@
       </div>
 
       <div class="project-description">
-        <p>Owned by <%= @project.owner.email %></p>
+        <p>Owned by <%= @project.owner_email %></p>
         <%= link_to "Visit webpage", @project.url %>
         <% if current_user == @project.owner %>
           | <%= link_to "Edit project", edit_project_url(@project) %>
@@ -30,7 +30,9 @@
         </div>
       <% else %>
         <% @screenshots.each do |screenshot| %>
-          <%= image_tag screenshot.image.url, class: 'img-responsive img-thumbnail', style: "max-height: 300px;" %>
+          <%= image_tag screenshot.image.url,
+              class: 'img-responsive img-thumbnail',
+              style: "max-height: 300px;" %>
           <hr/>
         <% end %>
       <% end %>
@@ -41,7 +43,12 @@
 
   <div class="row">
     <div class="col-md-12">
-      <h2>Releases <small class="text-right"><%= link_to 'Add New Release', new_project_release_url(@project) if @project.owner == current_user %></small></h2>
+      <h2>Releases
+        <small class="text-right">
+          <% if @project.owner == current_user %>
+            <%= link_to 'Add New Release', new_project_release_url(@project) %>
+          <% end %>
+        </small></h2>
     </div>
   </div>
   <% if @project.releases.any? %>

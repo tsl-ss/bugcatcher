@@ -3,6 +3,8 @@
     <div class="col-md-12">
       <h1>Edit Release</h1>
       <%= form_for @release, url: project_release_url(@project, @release), method: "patch" do |f| %>
+        <%= render "shared/error_messages", resource: @release %>
+
         <div class="form-group">
           <%= f.label :title, class: "form-control" %>
           <%= f.text_field :title, class: "form-control" %>

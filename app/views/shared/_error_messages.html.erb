@@ -1,14 +1,14 @@
-<% if @project.errors.any? %>
+<% if resource.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@project.errors.count, "error") %>
+      <%= pluralize(resource.errors.count, "error") %>
       prohibited this
-      <%= @project.class.to_s.underscore.humanize.downcase %>
+      <%= resource.class.to_s.underscore.humanize.downcase %>
       from being saved:
     </h2>
 
     <ul>
-    <% @project.errors.full_messages.each do |message| %>
+    <% resource.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
     </ul>
