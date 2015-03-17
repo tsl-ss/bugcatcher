@@ -13,11 +13,12 @@ class ProjectFlowsTest < ActionDispatch::IntegrationTest
     project = Project.find_by_name!('LanternHQ')
     assert_equal "/projects/#{project.id}", path
     assert assigns(:project)
+  end
 
-    # view the project
+  test "View a project" do
+    project = projects :lantern
     get "/projects/#{project.id}"
     assert_equal assigns(:project), project
-
-
   end
+
 end
