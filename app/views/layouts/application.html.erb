@@ -46,6 +46,16 @@
       </nav>
     </header>
 
+    <% flash.each do |name, msg| %>
+      <div class="alert <%= name == 'notice' ? 'alert-success' : 'alert-danger' %>">
+        <button type="button" class="close" data-dismiss="alert" >&times;</button>
+        <%= msg%>
+      </div>
+    <% end %>
+
+
   </div>
+
+
   <%= yield %>
 </html>
