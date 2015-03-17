@@ -1,9 +1,9 @@
 class ReportsController < ApplicationController
-  before_action :set_report_project_and_release, :only => [:show, :edit, :update, :destroy]
+  before_action :set_project_release
+  before_action :set_report, :only => [:show]
+  before_action :set_report_with_current_user, :only => [:edit, :destroy, :update]
 
   def new
-    @project = params[:project_id]
-    @release = params[:release_id]
     @report = Report.new
   end
 
@@ -28,6 +28,7 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     @report.release_id = params[:release_id]
+    @report.author = current_user
     @report.save
     redirect_to project_release_report_url(params[:project_id], params[:release_id], @report)
   end
@@ -36,10 +37,17 @@ class ReportsController < ApplicationController
     params.require(:report).permit(:content)
   end
 
-  def set_report_project_and_release
+  def set_report
     @report = Report.find(params[:id])
-    @project = params[:project_id]
-    @release = params[:release_id]
+  end
+
+  def set_report_with_current_user
+    @report = current_user.reports.find(params[:id])
+  end
+
+  def set_project_release
+    @project = Project.find(params[:project_id])
+    @release = Release.find(params[:release_id])
   end
 
 

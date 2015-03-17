@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
 
   has_many :projects, dependent: :destroy
   has_many :comments
+  has_many :reports, :class_name => "Report", :foreign_key => "author_id"
 end

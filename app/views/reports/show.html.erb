@@ -11,11 +11,13 @@
 
             Created on <%= @report.created_at.strftime('%B %d, %Y') %> |
 
-            <%= link_to "Edit Report",
-                edit_project_release_report_url(@project, @release, @report) %> |
+            <% if @report.author == current_user %>
+              <%= link_to "Edit Report",
+                  edit_project_release_report_url(@project, @release, @report) %> |
 
-            <%= link_to "Delete Report",
-                project_release_report_url(@project, @release, @report), method: "delete" %>
+              <%= link_to "Delete Report",
+                  project_release_report_url(@project, @release, @report), method: "delete" %>
+            <% end %>
           </small>
         </h4>
       </div>
