@@ -48,5 +48,8 @@
   <div class="form-group">
     <%= f.submit class: "btn btn-default" %>
   </div>
+  <% if @project.persisted? %>
+    <%= link_to "Delete Project", @project, class: "btn btn-danger btn", method: :delete, :data => {:confirm => "Are you sure you want to delete this project?"} %>
+  <% end %>
 <% end %>
 </div>

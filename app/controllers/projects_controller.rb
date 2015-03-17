@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = Project.all
@@ -25,6 +25,12 @@ class ProjectsController < ApplicationController
 
   def edit
   end
+
+  def destroy
+    @project.destroy
+    redirect_to projects_path
+  end
+
 
   def update
     if params[:delete_logo] == "1"
