@@ -1,27 +1,46 @@
-.mainJumbo {
-  border: 1px solid rgba(0,0,0,.2);
-  border-radius: $border-radius-small;
+.home-jumbotron {
+  background: image-url('home-jumbotron.jpg') no-repeat;
+  background-size: cover;
+
+  .info-box h1 {
+    font-size: 2.9em;
+    line-height: 1.2em;
+    font-weight: bold;
+    color: #FFF;
+    text-align: left;
+    text-shadow: 2px 2px 2px rgba(0,0,0, 0.6);
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 100px 0;
+  }
 }
 
 .signup-card {
   width: 80%;
   margin: 0 auto;
-  background-color: $gray-lighter;
+  background-color: rgba(255,255,255, 0.9);
+  box-shadow: 5px 5px 0px rgba(0,0,0, 0.4);
   border: 1px solid rgba(0,0,0,.2);
+
   @media (max-width: $screen-sm-max) { margin-top: 40px; }
+
   .signup-tabs {
     color: $gray-darker;
+
     .tab {
       text-align: center;
       padding: 10px;
       margin-bottom: 10px;
-      background-color: white;
+      background-color: rgba(238, 238, 238, 0.9);
       cursor: pointer;
     }
+
     .active {
-      background-color: $gray-lighter;
+      background-color: rgba(255,255,255, 0.0);
     }
   }
+
   #signup-form, #signin-form {
     padding: $padding-base-vertical $padding-base-horizontal;
     .form-control {
@@ -41,31 +60,19 @@
   }
 }
 
-/*customize flash message for devise*/
-.alert-error {
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
+.service-description {
+  .panel {
     text-align: left;
- }
+    box-shadow: none;
+  }
 
-.alert-alert {
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
-    text-align: left;
- }
+  .panel-title {
+    text-align: center;
+  }
+}
 
-.alert-success {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
-    text-align: left;
- }
-
-.alert-notice {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
-    text-align: left;
- }
+.popular-projects {
+  .thumbnail {
+    border: none;
+  }
+}

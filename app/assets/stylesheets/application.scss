@@ -3,9 +3,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootswatch/yeti/bootswatch";
+
+// Custom Bootstrap
 @import "bootstrap/navbar";
 @import "bootstrap/jumbotron";
 @import "bootstrap/panel";
 @import "bootstrap/thumbnails";
+
+// APP
+@import "base";
+@import "flash_messages";
 @import "static_page";
 @import "projects";
