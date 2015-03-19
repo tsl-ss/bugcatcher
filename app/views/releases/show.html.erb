@@ -16,10 +16,9 @@
       <div class="project-description">
         <h2><%= truncate(@project.name, length: 50) %></h2>
         <h2>Release: <%= truncate(@release.title, length: 40) %></h2>
+        <%= link_to "Add New Report", new_project_release_report_url(@project, @release) %>
       </div>
-
       <hr />
-
       <p class="project-description"><%= truncate(@release.description, length: 500) %></p>
     </div>
   </div>
@@ -36,4 +35,37 @@
         <% end %>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Reports</h4>
+      <hr/>
+      <ul class="list-group">
+        <% if @release.project.owner == current_user %>
+          <% @release.reports.each do |report| %>
+            <li class="list-group-item">
+              <%= link_to 'View Report', project_release_report_url(@project, @release, report), class: 'btn btn-primary' %>
+              Report #<%= report.id %> |
+              Created by <%= report.author.email %> on
+              <%= report.created_at.strftime('%B %d, %Y') %>
+              <hr/>
+              <p><%= report.content %></p>
+            </li>
+          <% end %>
+        <% else %>
+          <% @release.reports.each do |report| %>
+            <% if report.author == current_user %>
+              <li class="list-group-item">
+                <%= link_to 'View Report', project_release_report_url(@project, @release, report), class: 'btn btn-primary' %>
+                Report #<%= report.id %> |
+                Created by <%= report.author.email %> on
+                <%= report.created_at.strftime('%B %d, %Y') %>
+                <hr/>
+                <p><%= report.content %></p>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

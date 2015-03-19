@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'reports/new'
-  get 'reports/show'
-  get 'reports/edit'
-  get 'reports/delete'
-  get 'reports/create'
-
   root    'static_page#home'
   get     'static_page/home'
 
@@ -18,6 +12,16 @@ Rails.application.routes.draw do
       member do
         get :close
       end
+      resources :reports
     end
   end
+
+  get '/report_accepted/:id',   :controller => "reports",
+                                :action => "report_accepted",
+                                :as => "report_accepted"
+
+  get '/report_denied/:id',     :controller => "reports",
+                                :action => "report_denied",
+                                :as => "report_denied"
+
 end
