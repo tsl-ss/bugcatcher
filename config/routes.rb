@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root    'static_page#home'
   get     'static_page/home'
 
-  resources :comments
+  resources :reports do
+    resources :comments
+  end
 
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 
