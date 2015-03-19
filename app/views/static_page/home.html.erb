@@ -95,24 +95,29 @@
     </div>
   </div>
 
-  <div class="row popular-projects">
-    <div class="col-sm-12">
-      <div class="page-header text-center">
-        <h3>Featured projects</h3>
-      </div>
-    </div>
 
-    <% @projects.each do |project| %>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <%= image_tag project.logo.url(:medium) %>
-          <div class="caption">
-            <h4><%= project.name %></h4>
-          </div>
+</div>
+
+<div class="projects-section">
+  <div class="container">
+    <div class="row popular-projects">
+      <div class="col-sm-12">
+        <div class="page-header text-center">
+          <h3>Featured projects</h3>
         </div>
       </div>
-    <% end %>
 
+      <% @projects.each do |project| %>
+        <div class="col-sm-4">
+          <div class="thumbnail">
+            <%= image_tag project.logo.url(:medium) %>
+            <div class="caption">
+              <h4><%= project.name %></h4>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
   </div>
-
 </div>
