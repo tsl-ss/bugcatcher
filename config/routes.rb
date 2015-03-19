@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/leaderboard' => 'leaderboard#index'
+
   root    'static_page#home'
   get     'static_page/home'
 
