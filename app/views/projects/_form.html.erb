@@ -8,19 +8,14 @@
     </div>
 
     <% if f.object.logo_file_name %>
-      <div class="media">
-        <div class="media-body">
-          <p>
-            <%= f.label 'delete logo', class: "form-label" %>
-            <%= check_box_tag 'delete_logo' %>
-          </p>
+      <div class="form-group row">
+        <div class="col-md-2">
           <%= image_tag(f.object.logo.url :thumb, class: "img-thumbnail") %>
         </div>
-      </div>
-      </br>
-      <div class="form-group">
-        <%= f.label :logo, "Overwrite Logo", class: "form-label" %>
-        <%= f.file_field :logo %>
+        <div class="col-md-10">
+          <%= f.label :logo, "Overwrite Logo", class: "form-label" %>
+          <%= f.file_field :logo %>
+        </div>
       </div>
     <% else %>
       <div class="form-group">
@@ -30,7 +25,7 @@
     <% end %>
     <div class="form-group">
       <%= f.label :description, class: "form-label" %>
-      <%= f.text_area :description, class: "form-control" %>
+      <%= f.text_area :description, rows: 10, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :url, class: "form-label" %>
@@ -41,15 +36,24 @@
     <%= f.fields_for :screenshots do |builder| %>
       <%= render partial: 'screenshot_fields', locals: { f: builder } %>
     <% end %>
-    </br>
     <p>
     <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
     </p>
     <div class="form-group">
-      <%= f.submit class: "btn btn-default" %>
+      <hr />
+      <div class="pull-left">
+        <%= f.submit class: "btn btn-default" %> or
+        <%= link_to "Cancel", :back %>
+      </div>
+
+      <div class="pull-right">
+        <% if @project.persisted? %>
+          <%= link_to "Delete Project", @project,
+                class: "btn btn-danger btn-outline",
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this project?"} %>
+        <% end %>
+      </div>
     </div>
-    <% if @project.persisted? %>
-      <%= link_to "Delete Project", @project, class: "btn btn-danger btn", method: :delete, :data => {:confirm => "Are you sure you want to delete this project?"} %>
-    <% end %>
   <% end %>
 </div>

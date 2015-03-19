@@ -21,13 +21,15 @@
           <%= f.fields_for :screenshots do |builder| %>
             <%= render partial: 'screenshot_fields', locals: { f: builder } %>
           <% end %>
-          </br>
           <p>
           <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
           </p>
-
           <div class="form-group">
-            <%= f.submit class: "btn btn-default" %>
+            <hr />
+            <div class="pull-left">
+              <%= f.submit class: "btn btn-default" %> or
+              <%= link_to "Cancel", :back %>
+            </div>
           </div>
         <% end %>
       </div>

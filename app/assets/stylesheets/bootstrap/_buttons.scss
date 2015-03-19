@@ -1,0 +1,13 @@
+.btn-outline {
+  background: transparent;
+}
+
+.btn-outline.btn-danger {
+  color: red;
+  border: 1px solid rgba(255,0,0, 0.3);
+
+  &:hover, &:focus {
+    background-color: red;
+    color: white;
+  }
+}

@@ -1,35 +1,31 @@
 <div class="container container-buffer">
-  <%= link_to "< Back to Project", @project %>
   <div class="row">
-    <div class="col-md-4">
-      <div class="add-image-container">
-        <div class="row">
-          <%= image_tag @project.logo.url(:medium) %>
-        </div>
-        <div class="row">
-          <%= link_to "Close release", close_project_release_url(@project, @release) %> |
-          <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
-          <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
-        </div>
-      </div>
-    </div>
     <div class="col-md-8">
       <div class="project-description">
         <h2><%= truncate(@release.title, length: 50) %></h2>
         <h4><%= truncate(@project.name, length: 90) %></h4>
+        <%= link_to "Close release", close_project_release_url(@project, @release) %> |
+        <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
+        <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
       </div>
       <hr />
       <p class="project-description text-justify"><%= @release.description %></p>
+    </div>
+    <div class="col-md-3 col-md-offset-1 project-screenshots">
+      <div class="pull-right">
+        <%= link_to "< Back to Project", @project %>
+      </div>
       <% if @screenshots.present? %>
+        <div class="col-md-12">
+          <h4>Screenshots for this release:</h4>
+          <hr />
+        </div>
         <div class="row">
-          <div class="col-md-12 page-header">
-            <h4>Screenshots for this release:</h4>
-          </div>
-            <% @screenshots.each do |screenshot| %>
-              <div class="col-md-4">
-              <%= image_tag screenshot.image.url(:thumb) %>
-              </div>
-            <% end %>
+          <% @screenshots.each do |screenshot| %>
+            <div class="thumbnail">
+              <%= image_tag screenshot.image.url(:thumb), class: 'img-responsive' %>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
@@ -44,10 +40,10 @@
           <% end %>
         </small>
       </h3>
-      <ul class="list-group">
+      <div>
         <% if @release.project.owner == current_user %>
           <% @release.reports.each do |report| %>
-            <li class="list-group-item">
+            <div>
               <h4>
                 Report #<%= report.id %> |
                 <small>
@@ -59,14 +55,14 @@
                       class: 'btn btn-sm' %>
                 </small>
               </h4>
-              <hr/>
               <p><%= truncate(report.content, length: 800) %></p>
-            </li>
+            </div>
+            <hr />
           <% end %>
         <% else %>
           <% @release.reports.each do |report| %>
             <% if report.author == current_user %>
-              <li class="list-group-item">
+              <div>
                 <h4>
                   Report #<%= report.id %> |
                   <small>
@@ -77,15 +73,14 @@
                     project_release_report_url(@project, @release, report),
                     class: 'btn btn-sm' %>
                   </small>
-
                 </h4>
-                <hr/>
                 <p><%= truncate(report.content, length: 800) %></p>
-              </li>
+              </div>
+              <hr />
             <% end %>
           <% end %>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </div>
