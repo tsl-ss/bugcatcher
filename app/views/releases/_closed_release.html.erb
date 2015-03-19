@@ -2,7 +2,7 @@
   <div class="col-md-8">
     <h4><%= link_to truncate(release.title, length: 80), project_release_url(release.project, release) %></h4>
     <p><em>Closed <%= time_ago_in_words(release.updated_at) %> ago</em></p>
-    <p>
+    <p class="text-justify">
       <%= truncate(release.description, length: 500) %>
     </p>
   </div>

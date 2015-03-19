@@ -1,34 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8 col-md-offset-2">
       <h1>New Release</h1>
 
-      <%= form_for @release, url: project_releases_url(@project), method: "post" do |f| %>
-        <%= render "shared/error_messages", resource: @release %>
+      <div class="col-md-12">
+        <%= form_for @release, url: project_releases_url(@project), method: "post" do |f| %>
+          <%= render "shared/error_messages", resource: @release %>
 
-        <div class="form-group">
-          <%= f.label :title, class: "form-control" %>
-          <%= f.text_field :title, class: "form-control" %>
-        </div>
+          <div class="form-group">
+            <%= f.label :title, class: "form-label" %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
 
-        <div class="form-group">
-          <%= f.label :description, class: "form-control" %>
-          <%= f.text_area :description, class: "form-control" %>
-        </div>
+          <div class="form-group">
+            <%= f.label :description, class: "form-label" %>
+            <%= f.text_area :description, class: "form-control" %>
+          </div>
 
-        <%= label_tag "screenshots" %>
-        <%= f.fields_for :screenshots do |builder| %>
-          <%= render partial: 'screenshot_fields', locals: { f: builder } %>
+          <%= label_tag "screenshots" %>
+          <%= f.fields_for :screenshots do |builder| %>
+            <%= render partial: 'screenshot_fields', locals: { f: builder } %>
+          <% end %>
+          </br>
+          <p>
+          <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
+          </p>
+
+          <div class="form-group">
+            <%= f.submit class: "btn btn-default" %>
+          </div>
         <% end %>
-        </br>
-        <p>
-        <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
-        </p>
-
-        <div class="form-group">
-          <%= f.submit class: "btn btn-default" %>
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

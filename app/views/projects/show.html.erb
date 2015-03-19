@@ -1,64 +1,57 @@
-<div class="container">
+<div class="container container-buffer">
+  <%= link_to "< Back to All Projects", projects_url %>
   <div class="row">
-    <div class="col-md-2">
-      <p><%= image_tag @project.logo.url, class: 'img-responsive' %></p>
+    <div class="col-md-4">
 
-      <div class="project-description">
-        <p>
-          by <strong><%= @project.owner_email %></strong>
+      <div class="add-image-container">
+        <%= image_tag @project.logo.url(:medium) %>
+      </div>
+
+      <p>
+        by <strong><%= @project.owner_email %></strong>
+        <br/>
+        <%= link_to @project.url, @project.url %>
+        <% if current_user == @project.owner %>
           <br/>
-          <%= link_to @project.url, @project.url %>
-          <% if current_user == @project.owner %>
-            <br/>
-            <%= link_to "Edit Project", edit_project_url(@project) %>
-          <% end %>
-        </p>
-      </div>
-    </div>
-
-    <div class="col-md-9 col-md-offset-1">
-      <div class="page-header">
-        <h2>
-          <%= truncate(@project.name, length: 50) %>
-
-          <div class="small pull-right">
-            <%= link_to "Back to Projects", projects_url %>
-          </div>
-        </h2>
-      </div>
-
-      <p class="project-description text-justify">
-        <%= truncate(@project.description, length: 500) %>
+          <%= link_to "Edit Project", edit_project_url(@project) %>
+        <% end %>
       </p>
 
+    </div>
+
+    <div class="col-md-8">
+      <h3 style="margin-top: 0;"><%= truncate(@project.name, length: 60) %></h3>
+      <hr/>
+      <p class="project-description text-justify"><%= @project.description %></p>
       <% if @screenshots.present? %>
-        <% @screenshots.each do |screenshot| %>
-          <%= link_to screenshot.image.url, target: "_blank" do %>
+        <div class="row">
+          <h4 class="page-header text-left">Project Screenshots:</h4>
+          <% @screenshots.each do |screenshot| %>
             <%= image_tag screenshot.image.url(:thumb),
                 class: 'img-responsive img-thumbnail',
                 style: "max-height: 300px;" %>
-            <% end %>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
 
+
   <div class="row">
     <div class="col-md-12">
-      <h2 class="page-header">Releases
+      <h3 class="page-header">Releases
         <small>
           <% if @project.owner == current_user %>
-            <%= link_to 'Add New Release',
-                new_project_release_url(@project),
-                class: "btn btn-sm" %>
+            <%= link_to 'Add New Release', new_project_release_url(@project), class: "btn btn-sm" %>
           <% end %>
         </small>
-      </h2>
+      </h3>
     </div>
   </div>
 
   <% if @project.releases.any? %>
     <%= render @project.releases.open %>
+
     <hr />
 
     <div class="row">
@@ -67,7 +60,6 @@
       </div>
     </div>
     <%= render @project.releases.closed %>
-
   <% else %>
     <div class="row">
       <div class="col-md-12">
