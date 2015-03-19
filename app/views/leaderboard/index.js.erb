@@ -1,1 +1,6 @@
-$('#leaderboardTable').replaceWith("<%= j(render 'leaderboard_table')  %>");
+
+$('#leaderboardTable').fadeOut( function(){
+    var div = $("<%= j(render 'leaderboard_table')  %>").hide();
+    $(this).replaceWith(div);
+    $('#leaderboardTable').fadeIn();
+});

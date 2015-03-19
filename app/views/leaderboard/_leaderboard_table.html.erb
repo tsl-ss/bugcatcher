@@ -6,7 +6,7 @@
   </thead>
   <% @leaderboard.each_with_index do |player, n| %>
     <tr>
-      <td><%= n + 1 %></td>
+      <td><%= player[:rank] %></td>
       <td><%= player[:user].email %></td>
       <td><%= player[:count] %></td>
     </tr>
