@@ -30,9 +30,11 @@
         <div class="row">
           <h4 class="page-header text-left">Project Screenshots:</h4>
           <% @screenshots.each do |screenshot| %>
-            <%= image_tag screenshot.image.url(:thumb),
-                class: 'img-responsive img-thumbnail',
-                style: "max-height: 300px;" %>
+            <%= link_to screenshot.image.url do %>
+              <%= image_tag screenshot.image.url(:thumb),
+                  class: 'img-responsive img-thumbnail',
+                  style: "max-height: 300px;" %>
+              <% end %>
           <% end %>
         </div>
       <% end %>

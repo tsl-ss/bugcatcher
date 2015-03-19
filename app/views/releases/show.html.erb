@@ -1,35 +1,51 @@
 <div class="container container-buffer">
+
   <div class="row">
     <div class="col-md-8">
       <div class="project-description">
-        <h2><%= truncate(@release.title, length: 50) %></h2>
-        <h4><%= truncate(@project.name, length: 90) %></h4>
-        <%= link_to "Close release", close_project_release_url(@project, @release) %> |
-        <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
-        <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
+        <h2>
+          <%= truncate(@release.title, length: 50) %>
+        </h2>
+
+        <h4>
+          <%= link_to truncate(@project.name, length: 90), @project %>
+        </h4>
+
+        <% if @project.owner == current_user %>
+          <p>
+            <%= link_to "Close release", close_project_release_url(@project, @release) %> |
+            <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
+            <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
+          </p>
+        <% end %>
       </div>
+
       <hr />
-      <p class="project-description text-justify"><%= @release.description %></p>
+
+      <p class="project-description text-justify">
+        <%= @release.description %>
+      </p>
     </div>
+
     <div class="col-md-3 col-md-offset-1 project-screenshots">
-      <div class="pull-right">
-        <%= link_to "Back to Project", @project %>
-      </div>
       <% if @screenshots.present? %>
         <div class="col-md-12">
-          <h4>Screenshots for this release:</h4>
+          <h4>Screenshots</h4>
           <hr />
         </div>
         <div class="row">
           <% @screenshots.each do |screenshot| %>
             <div class="thumbnail">
-              <%= image_tag screenshot.image.url(:thumb), class: 'img-responsive' %>
+              <%= link_to screenshot.image.url do %>
+                <%= image_tag screenshot.image.url(:thumb), class: 'img-responsive' %>
+              <% end %>
             </div>
           <% end %>
         </div>
       <% end %>
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-12">
       <h3 class="page-header">

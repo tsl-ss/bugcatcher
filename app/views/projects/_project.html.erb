@@ -1,16 +1,13 @@
-<div class="row">
-  <div class="panel panel-default">
-    <div class="panel-body project-panel">
-      <div class="col-md-4 project-thumbnail text-center">
-        <div class="project-image-container">
-          <%= image_tag project.logo.url(:medium) %>
-        </div>
-      </div>
+<div class="row" style="border: 1px solid #DDD; border-width: 1px 0 0; padding: 20px 0; margin-bottom: 10px;">
 
-      <div class="col-md-8 project-description-index">
-        <h3><%= link_to truncate(project.name, length: 60), project %></h3>
-        <div class="project-summary text-justify"><%= truncate(project.description, length: 500) %></div>
-      </div>
+  <div class="col-md-2 project-thumbnail text-center">
+    <div class="project-image-container">
+      <%= image_tag project.logo.url(:medium) %>
     </div>
   </div>
+  <div class="col-md-10 project-description-index">
+    <h3><%= link_to truncate(project.name, length: 60), project %></h3>
+    <div class="project-summary text-justify"><%= truncate(project.description, length: 500) %></div>
+  </div>
+
 </div>

@@ -1,7 +1,7 @@
 var $signup = $('#signup-tab');
 var $signin = $('#signin-tab');
 
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
   $('.tab').click(function() {
     if(!$(this).hasClass('active')) {
       $('#signup-tab').toggleClass('active')
