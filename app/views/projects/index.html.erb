@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
 
-    <% if @projects.count == 0 %>
+    <% if Project.count == 0 %>
       <h3>You Have No Projects</h3>
       <p><%= link_to "Add a New Project", new_project_path, class: "btn btn-sm"%></p>
     <% else %>
       <div class="row">
         <h1>
-          <%= @projects.count %> Projects
+          <%= Project.count %> Projects
 
           <small>
             <% if current_user.present? %>
@@ -21,8 +21,8 @@
             <%= paginate @projects %>
           </div>
         </h1>
-
       </div>
+
       <div class="row projects-container">
         <%= render @projects %>
       </div>
@@ -30,6 +30,7 @@
   </div>
 
   <div class="row">
+    <hr/>
     <div class="pagination-footer pull-right">
       <%= paginate @projects %>
     </div>
