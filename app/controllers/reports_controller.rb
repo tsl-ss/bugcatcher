@@ -9,7 +9,8 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @comment = @report.comments.build
+    @comments = @report.comments
+    @comment = Comment.new
   end
 
   def edit
