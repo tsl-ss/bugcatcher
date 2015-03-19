@@ -19,21 +19,21 @@
         <h4><%= truncate(@project.name, length: 90) %></h4>
       </div>
       <hr />
-      <p class="project-description text-justify"><%= truncate(@release.description, length: 500) %></p>
+      <p class="project-description text-justify"><%= @release.description %></p>
+      <% if @screenshots.present? %>
+        <div class="row">
+          <div class="col-md-12 page-header">
+            <h4>Screenshots for this release:</h4>
+          </div>
+            <% @screenshots.each do |screenshot| %>
+              <div class="col-md-4">
+              <%= image_tag screenshot.image.url(:thumb) %>
+              </div>
+            <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
-  <% unless @screenshots.empty? %>
-    <div class="row">
-      <div class="col-md-12 page-header">
-        <h3>Screenshots for this release:</h3>
-      </div>
-        <% @screenshots.each do |screenshot| %>
-          <div class="col-md-4">
-          <%= image_tag screenshot.image.url(:thumb) %>
-          </div>
-        <% end %>
-    </div>
-  <% end %>
   <div class="row">
     <div class="col-md-12">
       <h3 class="page-header">
