@@ -24,6 +24,15 @@ class User < ActiveRecord::Base
     end
 
     leaderboard.sort_by! { |lb| -1*lb[:count] }
+
+    leaderboard.each_with_index do |item, index|
+      prior_item = leaderboard[index-1]
+      if item[:count] == prior_item[:count]
+        item[:rank] = prior_item[:rank]
+      else
+        item[:rank] = index + 1
+      end
+    end
   end
 
   def accepted_reports(interval)
@@ -39,6 +48,8 @@ class User < ActiveRecord::Base
   def rank(interval)
     leaderboard = User.leaderboard(interval)
 
-    leaderboard.find_index { |lb| lb[:user] == self } + 1
+    i = leaderboard.find_index { |lb| lb[:user] == self }
+
+    leaderboard[i][:rank]
   end
 end
