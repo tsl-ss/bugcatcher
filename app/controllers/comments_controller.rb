@@ -32,7 +32,7 @@ private
   end
 
   def comment_params
-    params.require(:comment).permit(:text, :user_id, :report_id)
+    params.require(:comment).permit(:text, :attachment)
   end
 
 end
