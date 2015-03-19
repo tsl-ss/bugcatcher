@@ -5,7 +5,13 @@ class CommentsController < ApplicationController
   def create
     @comment = @report.comments.build(comment_params)
     @comment.user = current_user
-    @report.save
+    if @comment.save
+      if @comment.report.release.project.owner == current_user
+        CommentsMailer.comment_from_project_owner(@comment).deliver_now
+      else
+        CommentsMailer.comment_to_project_owner(@comment).deliver_now
+      end
+    end
     redirect_to release_report_url(@report.release, @report)
   end
 
@@ -32,7 +38,7 @@ private
   end
 
   def comment_params
-    params.require(:comment).permit(:text, :user_id, :report_id)
+    params.require(:comment).permit(:text, :attachment)
   end
 
 end

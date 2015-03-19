@@ -55,6 +55,17 @@
       <h3>Discussion</h3>
       <hr/>
       <%= render "comments/form", comment: @comment %>
+      <hr>
+      <div class="col-sm-6">
+      <% @comments.each do |comment| %>
+        <ul class="list-group-item"><strong><%= comment.user.email %></strong>
+          <li class="list-group-item"><p><%= comment.text %></p></li>
+          <% if comment.attachment? %>
+            <li class="list-group-item"><p><%= image_tag comment.attachment.url(:thumb) %></p></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
