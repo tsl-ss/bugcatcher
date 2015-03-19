@@ -1,11 +1,23 @@
+.main-header {
+  margin-bottom: 40px;
+  box-shadow: 0px 5px 0px rgba(0,0,0, 0.1);
+
+  a {
+    color: #FFF;
+  }
+}
+
 .navbar {
   height: 70px;
   min-height: 70px;
-  box-shadow: 0px 5px 0px rgba(0,0,0, 0.1);
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background: transparent;
+  text-decoration: underline;
 }
 
 .navbar-brand {
-
   float: left;
   padding: 10px;
   font-size: $font-size-large;

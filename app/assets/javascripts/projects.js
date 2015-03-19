@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
   $('form').on('click', '.add_fields', function(event) {
     var regexp, time;
     time = new Date().getTime();
@@ -7,5 +7,3 @@ $(document).ready(function() {
     return event.preventDefault();
   });
 });
-
-$(document).on('page:load', ready);
