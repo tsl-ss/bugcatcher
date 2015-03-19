@@ -1,6 +1,13 @@
 <%= form_for [@release, @report] do |f| %>
-  <%= f.label :content, "Enter your report content here", class: 'control-label' %>
-  <%= f.text_area :content, class: 'form-control' %>
-  <hr/>
-  <%= f.submit class: 'btn btn-success' %>
+  <div class="form-group">
+    <%= f.label :content, "Enter your report content here", class: 'control-label' %>
+    <%= f.text_area :content, rows: 10, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <hr />
+    <div class="pull-left">
+      <%= f.submit class: "btn btn-default" %> or
+      <%= link_to "Cancel", :back %>
+    </div>
+  </div>
 <% end %>
