@@ -1,3 +1,4 @@
+
 <div class="container">
   <% if @report.release.project.owner == current_user && @report.accepted_by_project_owner == nil  %>
     <div class="row" id="acceptAlertBox">
@@ -14,28 +15,21 @@
   <div class="row">
     <div class="col-md-12">
       <div class="page-header">
-        <%= link_to "< Back to Release", project_release_path(@report.release.project, @report.release) %>
+        <%= link_to "Back to Release",
+            project_release_path(@release.project, @release) %>
+
         <h2>
-          Report #<%= @report.id %> for <%= truncate(@report.release.title, length: 50) %>
-          <%# unless @report.accepted_by_project_owner == nil %>
-<!--             <small>
-              You have
-              <span id="acceptStatus"><%= @report.accepted_by_project_owner %> </span>
-              this report
-            </small> -->
-          <%# end %>
+          Report #<%= @report.id %>
         </h2>
         <h4>
           <small>
-            <p>Created on <%= @report.created_at.strftime('%B %d, %Y') %></p>
-            <% if @report.author == current_user %>
-              <div>
-                <%= link_to "Edit Report",
-                    edit_project_release_report_url(@project, @release, @report) %> |
+            <%= @report.release.project.name %> |
+            <%= @report.release.title %> |
+            Created on <%= @report.created_at.strftime('%B %d, %Y') %> |
 
-                <%= link_to "Delete Report",
-                    project_release_report_url(@project, @release, @report), method: "delete" %>
-              </div>
+            <% if @report.author == current_user %>
+              <%= link_to "Edit Report", [:edit, @release, @report] %> |
+              <%= link_to "Delete Report", [@release, @report], method: "delete" %>
             <% end %>
 
           </small>
@@ -59,11 +53,14 @@
     </div>
   </div>
   <br>
+
   <div class="row">
     <div class="col-md-12">
       <h4><strong>Discussion</strong></h4>
       <hr/>
-      <p>COMMENTS TO BE ADDED</p>
+      <%= render "comments/form", comment: @comment %>
     </div>
   </div>
+
 </div>
+

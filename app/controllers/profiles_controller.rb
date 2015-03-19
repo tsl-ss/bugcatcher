@@ -1,6 +1,5 @@
 class ProfilesController < ApplicationController
-  # Remove this one you integrate Devise
-  helper_method :current_user
+  before_action :authenticate_user!
 
   def update
     respond_to do |format|
@@ -15,7 +14,6 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
-
     current_user.destroy
     respond_to do |format|
       format.html { redirect_to profile_url, notice: 'User was successfully destroyed.' }
@@ -24,13 +22,9 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Remove this one you integrate Devise
-    def current_user
-      User.first
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :bio, :email, :github, :linkedin, :twitter, :facebook, :avatar)
-    end
+  def user_params
+    params.require(:user).permit(:name, :bio, :email, :github, :linkedin, :twitter, :facebook, :avatar)
+  end
+
 end
