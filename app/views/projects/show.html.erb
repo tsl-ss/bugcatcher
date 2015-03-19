@@ -25,6 +25,7 @@
       <h3 style="margin-top: 0;"><%= truncate(@project.name, length: 60) %></h3>
       <hr/>
       <p class="project-description text-justify"><%= @project.description %></p>
+
       <% if @screenshots.present? %>
         <div class="row">
           <h4 class="page-header text-left">Project Screenshots:</h4>
