@@ -1,56 +1,55 @@
-<div class="col-md-6 col-md-offset-3">
-<%= render "shared/error_messages", resource: @project %>
+<div class="col-md-12">
+  <%= render "shared/error_messages", resource: @project %>
 
-<%= form_for @project do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-
-  <% if f.object.logo_file_name %>
-    <div class="media">
-      <div class="media-left media-middle">
-        <%= label_tag "logo" %>
-        <%= image_tag(f.object.logo.url :thumb, class: "img-thumbnail") %>
-      </div>
-      <div class="media-body">
-        <%= f.label 'delete logo' %>
-        <%= check_box_tag 'delete_logo' %>
-      </div>
+  <%= form_for @project do |f| %>
+    <div class="form-group">
+      <%= f.label :name, class: "form-label" %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
+
+    <% if f.object.logo_file_name %>
+      <div class="media">
+        <div class="media-body">
+          <p>
+            <%= f.label 'delete logo', class: "form-label" %>
+            <%= check_box_tag 'delete_logo' %>
+          </p>
+          <%= image_tag(f.object.logo.url :thumb, class: "img-thumbnail") %>
+        </div>
+      </div>
+      </br>
+      <div class="form-group">
+        <%= f.label :logo, "Overwrite Logo", class: "form-label" %>
+        <%= f.file_field :logo %>
+      </div>
+    <% else %>
+      <div class="form-group">
+        <%= f.label :logo, "Add Logo", class: "form-label" %>
+        <%= f.file_field :logo %>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :description, class: "form-label" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :url, class: "form-label" %>
+      <%= f.text_field :url, class: "form-control" %>
+    </div>
+
+    <%= label_tag "screenshots" %>
+    <%= f.fields_for :screenshots do |builder| %>
+      <%= render partial: 'screenshot_fields', locals: { f: builder } %>
+    <% end %>
     </br>
+    <p>
+    <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
+    </p>
     <div class="form-group">
-      <%= f.label :logo, "Overwrite Logo" %>
-      <%= f.file_field :logo %>
+      <%= f.submit class: "btn btn-default" %>
     </div>
-  <% else %>
-    <div class="form-group">
-      <%= f.label :logo, "Add Logo" %>
-      <%= f.file_field :logo %>
-    </div>
+    <% if @project.persisted? %>
+      <%= link_to "Delete Project", @project, class: "btn btn-danger btn", method: :delete, :data => {:confirm => "Are you sure you want to delete this project?"} %>
+    <% end %>
   <% end %>
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :url %>
-    <%= f.text_field :url, class: "form-control" %>
-  </div>
-
-  <%= label_tag "screenshots" %>
-  <%= f.fields_for :screenshots do |builder| %>
-    <%= render partial: 'screenshot_fields', locals: { f: builder } %>
-  <% end %>
-  </br>
-  <p>
-  <%= link_to_add_fields "Add Screenshot", f, :screenshots %>
-  </p>
-  <div class="form-group">
-    <%= f.submit class: "btn btn-default" %>
-  </div>
-  <% if @project.persisted? %>
-    <%= link_to "Delete Project", @project, class: "btn btn-danger btn", method: :delete, :data => {:confirm => "Are you sure you want to delete this project?"} %>
-  <% end %>
-<% end %>
 </div>
