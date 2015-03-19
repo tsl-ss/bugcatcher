@@ -1,9 +1,18 @@
+.navbar {
+  height: 70px;
+  min-height: 70px;
+  box-shadow: 0px 5px 0px rgba(0,0,0, 0.1);
+}
+
 .navbar-brand {
+
   float: left;
-  padding: $navbar-padding-vertical $navbar-padding-horizontal;
+  padding: 10px;
   font-size: $font-size-large;
   line-height: $line-height-computed;
-  height: $navbar-height;
+  height: 70px;
+  min-height: 70px;
+
   @media (max-width: $screen-xs-max) {
     position: absolute;
     width: 400px;
@@ -11,15 +20,15 @@
     margin-left: -200px;
     text-align: center;
   }
+
   &:hover,
   &:focus {
     text-decoration: none;
   }
+
   > img {
     display: inline-block;
-
-    // Custom Code
-    height: 60px;
+    height: 50px;
   }
 
   @media (min-width: $grid-float-breakpoint) {
