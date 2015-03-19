@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :reports, :class_name => "Report", :foreign_key => "author_id"
 
-  def self.leaderboard
+  def self.leaderboard(interval)
     leaderboard = []
 
     User.all.each_with_index do |user, index|
