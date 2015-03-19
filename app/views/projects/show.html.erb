@@ -1,10 +1,9 @@
 <div class="container container-buffer">
-  <%= link_to "< Back to All Projects", projects_url %>
   <div class="row">
     <div class="col-md-4">
 
       <div class="add-image-container">
-        <%= image_tag @project.logo.url(:medium) %>
+        <p><%= image_tag @project.logo.url(:medium) %></p>
       </div>
 
       <p>
@@ -20,6 +19,9 @@
     </div>
 
     <div class="col-md-8">
+      <div class="pull-right">
+        <%= link_to "< Back to All Projects", projects_url %>
+      </div>
       <h3 style="margin-top: 0;"><%= truncate(@project.name, length: 60) %></h3>
       <hr/>
       <p class="project-description text-justify"><%= @project.description %></p>
