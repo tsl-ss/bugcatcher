@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def create
+    @comment = @report.comments.build(comment_params)
+    @comment.user = current_user
+    @report.save
+    redirect_to release_report_url(@report.release, @report)
   end
 
   def show
@@ -20,7 +24,7 @@ class CommentsController < ApplicationController
 private
 
   def set_report
-    @report = Report.first
+    @report = Report.find(params[:report_id])
   end
 
   def set_comment

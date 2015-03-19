@@ -17,8 +17,11 @@ Rails.application.routes.draw do
       member do
         get :close
       end
-      resources :reports
     end
+  end
+
+  resources :releases, only: [] do
+    resources :reports
   end
 
   get '/report_accepted/:id',   :controller => "reports",
