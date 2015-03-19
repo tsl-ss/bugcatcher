@@ -1,173 +1,123 @@
 <%= form_for(current_user, url: profile_path) do |f| %>
-  <% if current_user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(current_user.errors.count, "error") %> prohibited your info from being saved:</h2>
+  <%= render 'shared/error_messages', resource: current_user %>
 
-      <ul>
-        <% current_user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <p class="col-md-offset-1">Enter account info:</p>
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :avatar, class: "control-label" %>
+          <%= f.file_field :avatar, class: "btn btn-default" %>
+        </div>
+      </div>
 
-  <form class="form-horizontal">
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.file_field :avatar, class: "btn btn-default" %>
-          </div>
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :name, class: "control-label" %><br>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :email, class: "control-label" %><br>
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :current_password,
+                      "Current Password (we need your current password to confirm your changes)",
+                      :class => "control-label"  %>
+          <%= f.password_field :current_password, autocomplete: "off", :class => "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :password,
+                      "New Password (leave blank if you don't want to change it)",
+                      :class => "control-label" %>
+          <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+          <% if @validatable %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :password_confirmation,
+                      "New Password Confirmation",
+                      :class => "control-label" %>
+          <%= f.password_field :password_confirmation,
+                               autocomplete: "off",
+                               :class => "form-control" %>
         </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.label :name, class: "control-label" %><br>
-            <%= f.text_field :name, class: "form-control" %>
-          </div>
+    <div class="col-md-6">
+
+      <p class="col-md-offset-1">Tell us about yourself:</p>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :bio, class: "control-label" %><br>
+          <%= f.text_area :bio, rows: 4, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :github, "Add Your Github Account", class: "control-label" %><br>
+          <%= f.text_field :github, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :linkedin, class: "control-label" %><br>
+          <%= f.text_field :linkedin, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :twitter, class: "control-label" %><br>
+          <%= f.text_field :twitter, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+          <%= f.label :facebook, class: "control-label" %><br>
+          <%= f.text_field :facebook, class: "form-control" %>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.label :bio, class: "control-label" %><br>
-            <%= f.text_area :bio, class: "form-control" %>
-          </div>
-        </div>
+  <div class="row">
+    <div class="page-header form-group">
+      <div class="text-center">
+        <%= f.submit "Update", :class => "btn btn-default" %>
+        or
+        <%= link_to 'Cancel', profile_path %>
       </div>
     </div>
-
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.label :email, class: "control-label" %><br>
-            <%= f.text_field :email, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.label :github, class: "control-label" %><br>
-            <%= f.text_field :github, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.label :linkedin, class: "control-label" %><br>
-            <%= f.text_field :linkedin, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.label :twitter, class: "control-label" %><br>
-            <%= f.text_field :twitter, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="row">
-        <div class="field">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.label :facebook, class: "control-label" %><br>
-            <%= f.text_field :facebook, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="row">
-        <div class="actions">
-          <div class=".col-xs-12 .col-md-8">
-            <%= f.submit "Save Changes", class: "btn btn-success" %>
-            or
-            <%= link_to 'Cancel', profile_path, class: "btn btn-danger" %>
-          </div>
-      </div>
-    </div>
-    </div>
-  </form>
+  </div>
 <% end %>
 
-<%= form_for(current_user, url: registration_path(current_user), html: { method: :put, :class => "form-horizontal" }) do |f| %>
-    <ul>
-        <% current_user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="col-md-8 col-md-offset-2 text-center">
+  <h3>Unhappy? Cancel my account</h3>
 
-    <div class="form-group">
-      <%= f.label :email, "Email", :class => "col-sm-offset-1 col-sm-2 control-label" %>
-      <div class="col-sm-6">
-      <%= f.email_field :email, autofocus: true, :class => "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :current_password, "Current Password", :class => "col-sm-offset-1 col-sm-2 control-label"  %>
-      <div class="col-sm-6">
-      <%= f.password_field :current_password, autocomplete: "off", :class => "form-control" %>
-      <i>(we need your current password to confirm your changes)</i>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password, "New Password", :class => "col-sm-offset-1 col-sm-2 control-label" %>
-      <div class="col-sm-6">
-      <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
-        <% if @validatable %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %>
-        <i>(leave blank if you don't want to change it)</i>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation, "New Password Confirmation", :class => "col-sm-offset-1 col-sm-2 control-label" %>
-      <div class="col-sm-6">
-      <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
-      </div>
-    </div>
-
-
-
-    <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-4">
-      <%= f.submit "Update", :class => "btn btn-success btn-block" %>
-      </div>
-    </div>
-
-    <% end %>
-
-    <hr>
-    <h3>Cancel my account</h3>
-
-    <p>Unhappy? <%= button_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-    <%= link_to "Back", :back %>
-
-
+  <p>
+    <%= button_to "Cancel my account",
+                  registration_path(current_user),
+                  class: "btn btn-default",
+                  data: { confirm: "Are you sure?" },
+                  method: :delete %>
+  </p>
+</div>
