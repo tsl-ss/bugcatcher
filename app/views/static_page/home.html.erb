@@ -128,9 +128,9 @@
       <% @projects.each do |project| %>
         <div class="col-sm-4">
           <div class="thumbnail">
-            <%= image_tag project.logo.url(:medium) %>
+            <%= link_to image_tag(project.logo.url(:medium)), project %>
             <div class="caption">
-              <h4><%= project.name %></h4>
+              <h4><%= link_to project.name, project %></h4>
             </div>
           </div>
         </div>

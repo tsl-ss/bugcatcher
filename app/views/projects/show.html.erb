@@ -7,37 +7,35 @@
         <%= image_tag @project.logo.url(:medium) %>
       </div>
 
-      <div class="project-description">
-        <p>Owned by <%= @project.owner_email %></p>
-        <%= link_to "Visit webpage", @project.url %>
+      <p>
+        by <strong><%= @project.owner_email %></strong>
+        <br/>
+        <%= link_to @project.url, @project.url %>
         <% if current_user == @project.owner %>
-          | <%= link_to "Edit project", edit_project_url(@project) %>
+          <br/>
+          <%= link_to "Edit Project", edit_project_url(@project) %>
         <% end %>
-      </div>
+      </p>
 
     </div>
 
     <div class="col-md-8">
       <h3 style="margin-top: 0;"><%= truncate(@project.name, length: 60) %></h3>
       <hr/>
-      <p class="project-description text-justify"><%= truncate(@project.description, length: 500) %></p>
+      <p class="project-description text-justify"><%= @project.description %></p>
+      <% if @screenshots.present? %>
+        <div class="row">
+          <h4 class="page-header text-left">Project Screenshots:</h4>
+          <% @screenshots.each do |screenshot| %>
+            <%= image_tag screenshot.image.url(:thumb),
+                class: 'img-responsive img-thumbnail',
+                style: "max-height: 300px;" %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 
-  <div class="row">
-    <h3 class="page-header text-left">Project Screenshots:</h3>
-    <% if @screenshots.empty? %>
-      <div class="add-image-container add-screenshot-container">
-        <%= link_to "Add some screenshots of your project", "#" %>
-      </div>
-    <% else %>
-      <% @screenshots.each do |screenshot| %>
-        <%= image_tag screenshot.image.url(:thumb),
-            class: 'img-responsive img-thumbnail',
-            style: "max-height: 300px;" %>
-      <% end %>
-    <% end %>
-  </div>
 
   <div class="row">
     <div class="col-md-12">
