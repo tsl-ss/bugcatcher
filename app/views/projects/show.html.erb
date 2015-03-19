@@ -1,10 +1,10 @@
-<div class="container project-container">
-  <%= link_to "< Back to Projects", projects_url %>
+<div class="container container-buffer">
+  <%= link_to "< Back to All Projects", projects_url %>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
 
       <div class="add-image-container">
-        <%= image_tag @project.logo.url, class: 'img-responsive' %>
+        <%= image_tag @project.logo.url(:medium) %>
       </div>
 
       <div class="project-description">
@@ -17,7 +17,7 @@
 
     </div>
 
-    <div class="col-md-8 col-md-offset-1">
+    <div class="col-md-8">
       <h3 style="margin-top: 0;"><%= truncate(@project.name, length: 60) %></h3>
       <hr/>
       <p class="project-description text-justify"><%= truncate(@project.description, length: 500) %></p>
@@ -50,21 +50,23 @@
       </h3>
     </div>
   </div>
-  <% if @project.releases.any? %>
-  <%= render @project.releases.open %>
-  <hr />
 
-  <div class="row">
-    <div class="col-md-12">
-      <h4>Closed Releases</h4>
+  <% if @project.releases.any? %>
+    <%= render @project.releases.open %>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Closed Releases</h4>
+      </div>
     </div>
-  </div>
-  <%= render @project.releases.closed %>
+    <%= render @project.releases.closed %>
   <% else %>
-  <div class="row">
-    <div class="col-md-12">
-      <p><em>There are no releases yet for this project.</em></p>
-    </div
-  </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p><em>There are no releases yet for this project.</em></p>
+      </div>
+    </div>
   <% end %>
 </div>

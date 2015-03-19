@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container container-buffer">
+  <%= link_to "< Back to Project", @project %>
   <div class="row">
     <div class="col-md-4">
       <div class="add-image-container">
@@ -14,53 +15,72 @@
     </div>
     <div class="col-md-8">
       <div class="project-description">
-        <h2><%= truncate(@project.name, length: 50) %></h2>
-        <h2>Release: <%= truncate(@release.title, length: 40) %></h2>
-        <%= link_to "Add New Report", new_project_release_report_url(@project, @release) %>
+        <h2><%= truncate(@release.title, length: 50) %></h2>
+        <h4><%= truncate(@project.name, length: 90) %></h4>
       </div>
       <hr />
-      <p class="project-description"><%= truncate(@release.description, length: 500) %></p>
+      <p class="project-description text-justify"><%= truncate(@release.description, length: 500) %></p>
     </div>
   </div>
   <% unless @screenshots.empty? %>
     <div class="row">
-      <div class="col-md-12">
-        <h4>Screenshots for this release:</h4>
-        <hr />
+      <div class="col-md-12 page-header">
+        <h3>Screenshots for this release:</h3>
       </div>
         <% @screenshots.each do |screenshot| %>
           <div class="col-md-4">
-          <%= image_tag screenshot.image.url(:medium) %>
+          <%= image_tag screenshot.image.url(:thumb) %>
           </div>
         <% end %>
     </div>
   <% end %>
   <div class="row">
     <div class="col-md-12">
-      <h4>Reports</h4>
-      <hr/>
+      <h3 class="page-header">
+        Reports
+        <small>
+          <% if @release.open? %>
+            <%= link_to "Add New Report", new_project_release_report_url(@project, @release), class: 'btn btn-sm' %>
+          <% end %>
+        </small>
+      </h3>
       <ul class="list-group">
         <% if @release.project.owner == current_user %>
           <% @release.reports.each do |report| %>
             <li class="list-group-item">
-              <%= link_to 'View Report', project_release_report_url(@project, @release, report), class: 'btn btn-primary' %>
-              Report #<%= report.id %> |
-              Created by <%= report.author.email %> on
-              <%= report.created_at.strftime('%B %d, %Y') %>
+              <h4>
+                Report #<%= report.id %> |
+                <small>
+                  Created by <%= report.author.email %> on
+                  <%= report.created_at.strftime('%B %d, %Y') %>
+
+                  <%= link_to 'View Report',
+                      project_release_report_url(@project, @release, report),
+                      class: 'btn btn-sm' %>
+                </small>
+              </h4>
               <hr/>
-              <p><%= report.content %></p>
+              <p><%= truncate(report.content, length: 800) %></p>
             </li>
           <% end %>
         <% else %>
           <% @release.reports.each do |report| %>
             <% if report.author == current_user %>
               <li class="list-group-item">
-                <%= link_to 'View Report', project_release_report_url(@project, @release, report), class: 'btn btn-primary' %>
-                Report #<%= report.id %> |
-                Created by <%= report.author.email %> on
-                <%= report.created_at.strftime('%B %d, %Y') %>
+                <h4>
+                  Report #<%= report.id %> |
+                  <small>
+                    Created by <%= report.author.email %> on
+                    <%= report.created_at.strftime('%B %d, %Y') %>
+
+                    <%= link_to 'View Report',
+                    project_release_report_url(@project, @release, report),
+                    class: 'btn btn-sm' %>
+                  </small>
+
+                </h4>
                 <hr/>
-                <p><%= report.content %></p>
+                <p><%= truncate(report.content, length: 800) %></p>
               </li>
             <% end %>
           <% end %>
