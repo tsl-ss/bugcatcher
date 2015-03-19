@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
 
-  before_action :set_project_and_release, :except => [:report_accepted, :report_denied]
+  before_action :set_release, :except => [:report_accepted, :report_denied]
   before_action :set_report, :only => [:show, :report_accepted, :report_denied]
   before_action :set_report_with_current_user, :only => [:edit, :destroy, :update]
 
@@ -16,15 +16,15 @@ class ReportsController < ApplicationController
   end
 
   def update
-    @report = Report.new(report_params)
-    @report.save
-    redirect_to project_release_report_url(params[:project_id], params[:release_id], @report)
+    @report = @release.reports.find(params[:id])
+    @report.update(report_params)
+    redirect_to release_report_url(@release, @report)
   end
 
   def destroy
     @report.destroy
     flash[:notice] = "Report deleted successfully."
-    redirect_to project_release_url(@project, @release)
+    redirect_to project_release_url(@release.project, @release)
   end
 
   def create
@@ -32,7 +32,8 @@ class ReportsController < ApplicationController
     @report.release_id = params[:release_id]
     @report.author = current_user
     @report.save
-    redirect_to project_release_report_url(params[:project_id], params[:release_id], @report)
+
+    redirect_to release_report_url(@release, @report)
   end
 
   def report_accepted
@@ -46,6 +47,7 @@ class ReportsController < ApplicationController
   def report_denied
     @report.accepted_by_project_owner = false
     @report.save
+
     respond_to do |format|
       format.js
     end
@@ -61,8 +63,7 @@ class ReportsController < ApplicationController
     @report = current_user.reports.find(params[:id])
   end
 
-  def set_project_and_release
-    @project = Project.find(params[:project_id])
+  def set_release
     @release = Release.find(params[:release_id])
   end
 

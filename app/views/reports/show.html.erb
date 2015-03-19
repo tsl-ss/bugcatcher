@@ -17,28 +17,16 @@
       <div class="page-header">
         <h2>
           Report #<%= @report.id %>
-          <%# unless @report.accepted_by_project_owner == nil %>
-<!--             <small>
-              You have
-              <span id="acceptStatus"><%= @report.accepted_by_project_owner %> </span>
-              this report
-            </small> -->
-          <%# end %>
         </h2>
         <h4>
           <small>
             <%= @report.release.project.name %> |
-
             <%= @report.release.title %> |
-
             Created on <%= @report.created_at.strftime('%B %d, %Y') %> |
 
             <% if @report.author == current_user %>
-              <%= link_to "Edit Report",
-                  edit_project_release_report_url(@project, @release, @report) %> |
-
-              <%= link_to "Delete Report",
-                  project_release_report_url(@project, @release, @report), method: "delete" %>
+              <%= link_to "Edit Report", [:edit, @release, @report] %> |
+              <%= link_to "Delete Report", [@release, @report], method: "delete" %>
             <% end %>
           </small>
         </h4>
@@ -65,7 +53,7 @@
     <div class="col-md-12">
       <h4><strong>Discussion</strong></h4>
       <hr/>
-      <%= render "comments/form", comment: @comment %>
+      <%#= render "comments/form", comment: @comment %>
     </div>
   </div>
 </div>
