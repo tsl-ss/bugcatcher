@@ -1,3 +1,7 @@
+.project-container {
+  margin-top: 20px;
+}
+
 .project-thumbnail {
   border-right: 1px solid #EEE;
 }
@@ -27,13 +31,6 @@
 .project-description-index {
   text-align: left;
   padding: 10px;
-  h3 {
-    margin-top: 0;
-    white-space: nowrap;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
 .project-description {
   padding: 0;
