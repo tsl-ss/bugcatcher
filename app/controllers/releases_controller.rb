@@ -1,6 +1,7 @@
 class ReleasesController < ApplicationController
   before_action :set_project, only: [:new, :create, :edit, :update, :show, :destroy]
   before_action :set_release, only: [:edit, :show, :update, :close, :destroy]
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :close]
 
   def new
     @release = @project.releases.build

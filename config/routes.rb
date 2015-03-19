@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   resource :profile, except: [:new, :create]
 
-
   resources :projects do
     resources :releases do
       member do

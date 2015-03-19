@@ -1,21 +1,37 @@
 <div class="container">
-
   <div class="row">
-    <div class="col-md-12">
 
-      <% if @projects.count < 1 %>
-        <h3>You Have No Projects<h3>
-        <p><%= link_to "Add New Project", "projects/new", class: "btn btn-primary"%></p>
-      <% else %>
-        <div class="page-header">
-          <h2>All Projects <small><%= link_to 'Add New Project', new_project_url %></small></h2>
-        </div>
-        <div class="row">
-          <%= render @projects %>
-        </div>
-      <% end %>
+    <% if @projects.count == 0 %>
+      <h3>You Have No Projects</h3>
+      <p><%= link_to "Add a New Project", new_project_path, class: "btn btn-sm"%></p>
+    <% else %>
+      <div class="row">
+        <h1>
+          <%= @projects.count %> Projects
 
-    </div>
+          <small>
+            <% if current_user.present? %>
+              <%= link_to "Add a New Project", new_project_url, class: "btn btn-sm" %>
+            <% else %>
+              <%= link_to "Add a New Project", new_project_url, class: "btn btn-sm", data: {confirm: "You must be signed in to start a project"} %>
+            <% end %>
+          </small>
+
+          <div class="pagination-header small pull-right">
+            <%= paginate @projects %>
+          </div>
+        </h1>
+
+      </div>
+      <div class="row projects-container">
+        <%= render @projects %>
+      </div>
+    <% end %>
   </div>
 
+  <div class="row">
+    <div class="pagination-footer pull-right">
+      <%= paginate @projects %>
+    </div>
+  </div>
 </div>
