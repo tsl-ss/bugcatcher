@@ -1,20 +1,20 @@
 class CommentsMailer < ApplicationMailer
 
-  def comment_to_project_author(user)
-    @user = report.author_id
-    @url  = 'http://example.com/login'
-    mail(to: project.user_id, subject: 'Author of project you have a comment')
+  def comment_to_project_owner(comment)
+    @commentor = comment.user
+    @project_owner = comment.report.release.project.owner
+    @comment = comment
+    @release = comment.report.release
+    @report = comment.report
+    mail(to: @project_owner.email, subject: "[#{comment.report.release.project.name}] New report comment.")
   end
 
-   def comment_from_project_author(user)
-    @user = project.user_id
-    @url  = 'http://example.com/login'
-    mail(to: report.author_id, subject: 'the author has emailed you back')
+   def comment_from_project_owner(comment)
+    @project_owner = comment.user
+    @user = comment.report.author
+    @comment = comment
+    @release = comment.report.release
+    @report = comment.report
+    mail(to: @user.email, subject: "[#{comment.report.release.project.name}] Response from project owner.")
   end
-
 end
-
-
-author needs to be notified when a commenter comments on the auth
-
-commenter needs to be notified when author sends a reponse to the original commenters comment

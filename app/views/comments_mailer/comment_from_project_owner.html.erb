@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You have a new comment from, <%= @project_owner.email %></h1>
+    <p>
+      <%= @comment.text %>
+    </p>
+
+    <%= link_to "View this report in Bug Catcher", release_report_url(@release, @report) %>
+  </body>
+</html>
