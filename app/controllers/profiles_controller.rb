@@ -24,10 +24,6 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Remove this one you integrate Devise
-    def current_user
-      User.first
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
