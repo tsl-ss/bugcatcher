@@ -1,8 +1,12 @@
-<%= form_for [@report, comment], remote: true do |f| %>
+<%= form_for [@report, comment] do |f| %>
   <h4>Add new comment</h4>
 
   <div class="field">
     <%= f.text_area :text %>
+  </div>
+
+  <div class="field">
+  <%= f.file_field :attachment, class: "btn btn-default" %>
   </div>
 
   <div class="actions">
