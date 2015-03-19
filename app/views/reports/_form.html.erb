@@ -1,0 +1,9 @@
+<%= form_for @report,
+    url: project_release_reports_url(@project, @release),
+    method: "post" do |f| %>
+
+  <%= f.label :content, "Enter your report content here", class: 'control-label' %>
+  <%= f.text_area :content, class: 'form-control' %>
+  <hr/>
+  <%= f.submit class: 'btn btn-success' %>
+<% end %>
