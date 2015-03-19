@@ -19,11 +19,26 @@ class User < ActiveRecord::Base
     User.all.each_with_index do |user, index|
       result = {}
       result[:user] = user
-      result[:count] = index+1
+      result[:count] = user.accepted_reports(interval)
       leaderboard << result
     end
 
-    leaderboard
+    leaderboard.sort_by! { |lb| -1*lb[:count] }
   end
 
+  def accepted_reports(interval)
+    if interval == :alltime
+      self.reports.accepted.count
+    elsif interval == :monthly
+      self.reports.accepted.where("created_at > ?", (Time.now - 30.days)).count
+    else
+      0
+    end
+  end
+
+  def rank(interval)
+    leaderboard = User.leaderboard(interval)
+
+    leaderboard.find_index { |lb| lb[:user] == self } + 1
+  end
 end
