@@ -1,11 +1,14 @@
-.navbar {
-  height: 70px;
-  min-height: 70px;
+.main-header {
+  margin-bottom: 40px;
   box-shadow: 0px 5px 0px rgba(0,0,0, 0.1);
 }
 
-.navbar-brand {
+.navbar {
+  height: 70px;
+  min-height: 70px;
+}
 
+.navbar-brand {
   float: left;
   padding: 10px;
   font-size: $font-size-large;
