@@ -12,4 +12,18 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :comments
   has_many :reports, :class_name => "Report", :foreign_key => "author_id"
+
+  def self.leaderboard
+    leaderboard = []
+
+    User.all.each_with_index do |user, index|
+      result = {}
+      result[:user] = user
+      result[:count] = index+1
+      leaderboard << result
+    end
+
+    leaderboard
+  end
+
 end
