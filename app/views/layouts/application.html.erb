@@ -17,7 +17,7 @@
     ga('send', 'pageview');
   </script>
 </head>
-<body>
+<body id="<%= body_css_id %>" class="<%= body_css_class %>">
 
   <header class="main-header">
     <div class="container">
@@ -44,11 +44,11 @@
           <% if current_user.present? %>
             <ul class="nav navbar-nav navbar-right">
               <li><%= link_to "#{current_user.email}", profile_path %></li>
+              <li><%= link_to "Projects", projects_path %></li>
               <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
             </ul>
           <% end %>
-
-        </div><!-- /.navbar-collapse -->
+        </div>
       </nav>
     </div>
   </header>

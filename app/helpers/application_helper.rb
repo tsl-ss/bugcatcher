@@ -1,5 +1,15 @@
 module ApplicationHelper
 
+  def body_css_id
+    controller = controller_path.gsub("/","-").underscore.dasherize
+    "#{controller}-body"
+  end
+
+  def body_css_class
+    "#{action_name}-body"
+  end
+
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.send(association).klass.new
 

@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @report.comments.build(comment_params)
     @comment.user = current_user
+
     if @comment.save
       if @comment.report.release.project.owner == current_user
         CommentsMailer.comment_from_project_owner(@comment).deliver_now
@@ -12,6 +13,7 @@ class CommentsController < ApplicationController
         CommentsMailer.comment_to_project_owner(@comment).deliver_now
       end
     end
+
     redirect_to release_report_url(@report.release, @report)
   end
 

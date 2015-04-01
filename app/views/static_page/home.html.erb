@@ -1,121 +1,65 @@
+<style type="text/css">
+
+.service-description {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.service-description .row {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+</style>
+
 <div class="jumbotron home-jumbotron">
   <div class="container">
     <div class="row">
-      <div class="col-md-8 info-box">
-        <h1>
-          Deliver a better experience recruiting an army
-          of testers and QA engineers to your product.
-        </h1>
-      </div>
-      <div class="col-md-4">
-        <div class="signup-card">
-          <div class="signup-tabs row">
-            <div class="col-xs-6 tab active" id="signup-tab">Sign Up</div>
-            <div class="col-xs-6 tab" id="signin-tab">Sign In</div>
-          </div>
-          <div id="signup-form">
-            <%= form_for(User.new, url: registration_path(:user)) do |f| %>
-
-              <%= f.email_field :email,
-                  autofocus: true,
-                  :class => "form-control",
-                  placeholder: "email" %>
-
-              <%= f.password_field :password,
-                  autocomplete: "off",
-                  :class => "form-control",
-                  placeholder: "password" %>
-
-                  <% if @validatable %>
-                  <em>(<%= @minimum_password_length %> characters minimum)</em>
-                  <% end %>
-
-              <%= f.password_field :password_confirmation,
-                  autocomplete: "off",
-                  :class => "form-control",
-                  placeholder: "confirm password" %>
-
-              <%= f.submit "Get started", :class => "btn btn-primary btn-block" %>
-            <% end %>
-          </div>
-          <div id="signin-form">
-            <%= form_for(User.new, url: session_path(:user)) do |f| %>
-              <%= f.email_field :email,
-                  autofocus: true,
-                  :class => "form-control",
-                  placeholder: "email" %>
-
-              <%= f.password_field :password,
-                  autocomplete: "off",
-                  :class => "form-control",
-                  placeholder: "password" %>
-
-                <div class="form-control remember-me">
-                  <div class="col-md-6">
-                    <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me %>
-                  </div>
-                  <div class="col-md-6">
-                    <%= link_to "Forgot Password?", new_user_password_url %>
-                  </div>
-                </div>
-              <%= f.submit "Log in", :class => "btn btn-primary btn-block"  %>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <%= render(current_user.present? ? "home_jumbo_for_user" : "home_jumbo_for_guest") %>
     </div>
   </div>
 </div>
 
-
-<div class="container service-description">
-
+<div class="service-description container" style="max-width: 800px;">
   <div class="row">
-    <div class="col-sm-6">
-      <div class="panel">
-        <div class="panel-heading">
-          <div class="page-header">
-            <h3 class="panel-title">For Developers</h3>
-          </div>
-        </div>
-        <div class="panel-body text-center">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur.
-          </p>
-
-          <p>
-            <%= link_to "Sign-up and add your project", new_user_registration_path %>
-          </p>
-        </div>
-      </div>
+    <div class="col-sm-3">
+      <%= image_tag "for-devs.jpg", style: "width: 100%;" %>
     </div>
 
-    <div class="col-sm-6">
-      <div class="panel panel-users">
-        <div class="panel-heading">
-          <div class="page-header">
-            <h3 class="panel-title">For Testers</h3>
-          </div>
-        </div>
-        <div class="panel-body text-center">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur.
-          </p>
+    <div class="col-sm-8 col-sm-offset-1">
+      <h3>For Developers</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur.
+      </p>
 
-          <p>
-            <%= link_to "Sign-up and add start testing", new_user_registration_path %>
-          </p>
-        </div>
-      </div>
+      <p>
+        <%= link_to "Sign-up and add your project", new_user_registration_path %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h3>For Testers</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur.
+      </p>
+
+      <p>
+        <%= link_to "Sign-up and add start testing", new_user_registration_path %>
+      </p>
+    </div>
+
+    <div class="col-sm-3 col-sm-offset-1">
+      <%= image_tag "for-qa-ppl.jpg", style: "width: 100%" %>
     </div>
   </div>
 
