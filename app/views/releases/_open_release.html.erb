@@ -9,7 +9,15 @@
 
   <div class="col-md-4 text-center">
     <% if @project.owner == current_user %>
-    <p><%= link_to "Close Release", close_project_release_url(release.project, release) %></p>
+      <%= form_for [@project, release] do |f| %>
+        <%= f.hidden_field :open, value: false %>
+        <%= f.submit "Close Release",
+              class: "btn btn-default btn-xs",
+              data: {
+                confirm: "Once a release is closed for testing you can not open again. Are you sure you want to close it?"
+              } %>
+      <% end %>
     <% end %>
   </div>
 </div>
+

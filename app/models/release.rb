@@ -12,15 +12,6 @@ class Release < ActiveRecord::Base
   scope :open, -> { where(open: true) }
   scope :closed, -> { where(open: false) }
 
-  def close_release
-    self.open = false
-  end
-
-  def close_release!
-    self.close_release
-    self.save
-  end
-
 private
 
   def close_any_open_project_releases

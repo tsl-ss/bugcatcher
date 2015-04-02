@@ -12,11 +12,31 @@
         </h4>
 
         <% if @project.owner == current_user %>
-          <p>
-            <%= link_to "Close release", close_project_release_url(@project, @release) %> |
-            <%= link_to "Edit release", edit_project_release_url(@project, @release) %>|
-            <%= link_to "Delete release", project_release_url(@project, @release), method: "delete" %>
-          </p>
+          <ul class="list-inline">
+            <% if @release.open? %>
+              <li>
+                <%= form_for [@project, @release] do |f| %>
+                  <%= f.hidden_field :open, value: false %>
+                  <%= f.submit "Close Release",
+                        class: "btn btn-default btn-xs",
+                        data: {
+                          confirm: "Once a release is closed for testing you can not open again. Are you sure you want to close it?"
+                        } %>
+                <% end %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to "Edit release",
+                    edit_project_release_url(@project, @release),
+                    class: "btn btn-default btn-xs" %>
+            </li>
+            <li>
+              <%= link_to "Delete release",
+                    project_release_url(@project, @release),
+                    class: "btn btn-default btn-xs",
+                    method: "delete" %>
+            </li>
+          </ul>
         <% end %>
       </div>
 

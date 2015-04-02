@@ -11,10 +11,6 @@ Rails.application.routes.draw do
   resources :projects do
     resources :releases do
       resources :reports
-
-      member do
-        get :close
-      end
     end
   end
 

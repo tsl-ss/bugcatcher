@@ -1,9 +1,7 @@
 class ReleasesController < ApplicationController
   before_action :set_project, only: [:new, :create, :edit, :update, :show, :destroy]
   before_action :set_release, only: [:edit, :show, :update, :close, :destroy]
-
   before_action :authenticate_user!, :except => [:show]
-  before_action :authorize_user!, :except => [:show]
 
   def new
     @release = @project.releases.build
@@ -31,15 +29,7 @@ class ReleasesController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:project_id])
-    @release = @project.releases.find(params[:id])
     @screenshots = @release.screenshots
-  end
-
-  def close
-    @release.close_release!
-    @release.save
-    redirect_to :back
   end
 
   def destroy
@@ -50,7 +40,11 @@ class ReleasesController < ApplicationController
 private
 
   def set_project
-    @project = current_user.projects.find(params[:project_id])
+    @project = if current_user.present?
+      current_user.projects.find(params[:project_id])
+    else
+      Project.find(params[:project_id])
+    end
   end
 
   def set_release
@@ -58,7 +52,13 @@ private
   end
 
   def release_params
-    params.require(:release).permit(:title, :logo, :description, screenshots_attributes: [:id, :image, :_destroy])
+    params.require(:release).permit(
+      :title,
+      :logo,
+      :description,
+      :open,
+      screenshots_attributes: [:id, :image, :_destroy]
+    )
   end
 
 end
