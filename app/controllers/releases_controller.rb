@@ -11,7 +11,7 @@ class ReleasesController < ApplicationController
   def create
     @release = @project.releases.open.build(release_params)
     if @release.save
-      redirect_to @project
+      redirect_to [@project, @release]
     else
       render 'new'
     end
@@ -22,7 +22,7 @@ class ReleasesController < ApplicationController
 
   def update
     if @release.update(release_params)
-      redirect_to @project, notice: 'Release was successfully updated.'
+      redirect_to [@project, @release], notice: 'Release was successfully updated.'
     else
       render 'edit'
     end
