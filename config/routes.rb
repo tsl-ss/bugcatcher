@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
-
-  get '/leaderboard' => 'leaderboard#index', as: :leaderboard
-
   root    'static_page#home'
-  get     'static_page/home'
 
-  resources :reports do
-    resources :comments
-  end
-
-  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
+  devise_for :users, controllers: {
+    sessions: "users/sessions",
+    registrations: "users/registrations"
+  }
 
   resource :profile, except: [:new, :create]
+
+  get '/leaderboard' => 'leaderboard#index', as: :leaderboard
 
   resources :projects do
     resources :releases do
@@ -21,6 +18,10 @@ Rails.application.routes.draw do
         get :close
       end
     end
+  end
+
+  resources :reports do
+    resources :comments
   end
 
   resources :releases, only: [] do
@@ -34,5 +35,4 @@ Rails.application.routes.draw do
   get '/report_denied/:id',     :controller => "reports",
                                 :action => "report_denied",
                                 :as => "report_denied"
-
 end
