@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/leaderboard' => 'leaderboard#index'
+  get '/leaderboard' => 'leaderboard#index', as: :leaderboard
 
   root    'static_page#home'
   get     'static_page/home'
