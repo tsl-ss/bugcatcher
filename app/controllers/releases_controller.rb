@@ -1,7 +1,9 @@
 class ReleasesController < ApplicationController
   before_action :set_project, only: [:new, :create, :edit, :update, :show, :destroy]
   before_action :set_release, only: [:edit, :show, :update, :close, :destroy]
-  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy, :close]
+
+  before_action :authenticate_user!, :except => [:show]
+  before_action :authorize_user!, :except => [:show]
 
   def new
     @release = @project.releases.build
@@ -29,6 +31,8 @@ class ReleasesController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:project_id])
+    @release = @project.releases.find(params[:id])
     @screenshots = @release.screenshots
   end
 
@@ -43,16 +47,18 @@ class ReleasesController < ApplicationController
     redirect_to @project, notice: 'Release was successfully deleted'
   end
 
-  private
+private
 
-    def set_project
-      @project = Project.find(params[:project_id])
-    end
-    def set_release
-      @release = Release.find(params[:id])
-    end
+  def set_project
+    @project = current_user.projects.find(params[:project_id])
+  end
 
-    def release_params
-      params.require(:release).permit(:title, :logo, :description, screenshots_attributes: [:id, :image, :_destroy])
-    end
+  def set_release
+    @release = @project.releases.find(params[:id])
+  end
+
+  def release_params
+    params.require(:release).permit(:title, :logo, :description, screenshots_attributes: [:id, :image, :_destroy])
+  end
+
 end
