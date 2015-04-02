@@ -35,19 +35,22 @@
             <span class="icon-bar"></span>
           </button>
 
-          <%= link_to root_path, class: "navbar-brand" do %>
-            <%= image_tag("bug-catcher-logo.png", alt: "Bug Catcher Logo") %>
-          <% end %>
+          <h2>
+            <%= link_to "Bug Catcher", root_path, class: "navbar-brand" %>
+          </h2>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-          <% if current_user.present? %>
-            <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right">
+            <% if current_user.present? %>
               <li><%= link_to "#{current_user.email}", profile_path %></li>
               <li><%= link_to "Projects", projects_path %></li>
               <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-            </ul>
-          <% end %>
+            <% else %>
+              <li><%= link_to "Sign in",  new_user_session_path %></li>
+              <li><%= link_to "Sign up",  new_user_registration_path %></li>
+            <% end %>
+          </ul>
         </div>
       </nav>
     </div>
@@ -61,7 +64,10 @@
 
   <footer class="footer">
     <div class="container">
-      <p class="text-muted">Bug Catcher ...</p>
+      <p class="text-muted">
+        Bug Catcher is an open source project and
+        experiment from <a href="http://starterschool.com/">Starter School</a> students
+      </p>
     </div>
   </footer>
 

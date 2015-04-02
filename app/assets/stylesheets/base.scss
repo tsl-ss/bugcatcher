@@ -6,12 +6,6 @@ body {
   margin-bottom: 50px;
 }
 
-header {
-  background: transparent;
-  position: absolute;
-  width: 100%;
-}
-
 .container-buffer {
   margin-top: 40px;
   margin-bottom: 40px;
@@ -33,5 +27,15 @@ header {
 
   p {
     margin: 20px 0
+  }
+}
+
+header.main-header {
+  .navbar-brand {
+    background: image-url("bug-catcher-logo-black.png") no-repeat;
+    width: 202px;
+    height: 50px;
+    display: block;
+    text-indent: -99999px;
   }
 }

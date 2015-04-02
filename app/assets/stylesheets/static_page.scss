@@ -1,6 +1,20 @@
-.main-header {
-  a {
-    color: #FFF;
+.home-body {
+  header.main-header {
+    background: transparent;
+    position: absolute;
+    width: 100%;
+
+    a {
+      color: #FFF;
+    }
+
+    .navbar-brand {
+      background: image-url("bug-catcher-logo-white.png") no-repeat;
+      width: 202px;
+      height: 50px;
+      display: block;
+      text-indent: -99999px;
+    }
   }
 }
 
@@ -76,13 +90,14 @@
 }
 
 .service-description {
-  .panel {
-    text-align: left;
-    box-shadow: none;
-  }
+  margin-top: 40px;
+  margin-bottom: 40px;
 
-  .panel-title {
-    text-align: center;
+  @media screen and (min-width: 768px) {
+    .row {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
   }
 }
 
