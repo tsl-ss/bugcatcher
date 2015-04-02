@@ -54,6 +54,12 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :logo, :description, :url, screenshots_attributes: [:id, :image, :_destroy])
+      params.require(:project).permit(
+        :name,
+        :logo,
+        :description,
+        :url,
+        screenshots_attributes: [:id, :image, :_destroy]
+      )
     end
 end

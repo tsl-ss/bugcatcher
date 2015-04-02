@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   resource :profile, except: [:new, :create]
 
-  get '/leaderboard' => 'leaderboard#index', as: :leaderboard
-
   resources :projects do
     resources :releases do
       resources :reports
@@ -35,4 +33,6 @@ Rails.application.routes.draw do
   get '/report_denied/:id',     :controller => "reports",
                                 :action => "report_denied",
                                 :as => "report_denied"
+
+  get '/leaderboard' => 'leaderboard#index', as: :leaderboard
 end
