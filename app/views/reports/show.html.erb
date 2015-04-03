@@ -5,17 +5,25 @@
         <p class="lead" style="color: white;">
           This is a new report. Please review and either accept or deny this report.
         </p>
-        <br>
-        <%= link_to 'Accept this Report', report_accepted_url(@report), class: 'btn btn-success', remote: true %>
-        <%= link_to 'Deny this Report', report_denied_url(@report), class: 'btn btn-danger', remote: true %>
+
+        <%= link_to 'Accept this Report',
+              report_status_path(id: @report.id, accepted_by_project_owner: true),
+              class: 'btn btn-success',
+              method: "patch",
+              remote: true %>
+
+        <%= link_to 'Deny this Report',
+              report_status_path(id: @report.id, accepted_by_project_owner: false),
+              class: 'btn btn-danger',
+              method: "patch",
+              remote: true %>
       </div>
     </div>
   <% end %>
   <div class="row">
     <div class="col-md-12">
       <div class="page-header">
-        <%= link_to "Back to Release",
-            project_release_path(@release.project, @release), class: "pull-right" %>
+        <%= link_to "Back to Release", [@release.project, @release], class: "pull-right" %>
 
         <h2>
           Report #<%= @report.id %>
@@ -54,8 +62,11 @@
     <div class="col-md-12">
       <h3>Discussion</h3>
       <hr/>
+
       <%= render "comments/form", comment: @comment %>
+
       <hr>
+
       <div class="col-sm-6">
       <% @comments.each do |comment| %>
         <ul class="list-group-item"><strong><%= comment.user.email %></strong>
@@ -69,4 +80,3 @@
     </div>
   </div>
 </div>
-

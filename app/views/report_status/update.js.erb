@@ -1,0 +1,7 @@
+<% if @report.accepted? %>
+  $('#acceptAlertBox').slideToggle();
+  $('#acceptStatus').html('ACCEPTED');
+<% else %>
+  $('#acceptAlertBox').slideToggle();
+  $('#acceptStatus').html('Denied');
+<% end %>

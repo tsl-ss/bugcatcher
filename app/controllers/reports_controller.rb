@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
 
-  before_action :set_release, :except => [:report_accepted, :report_denied]
-  before_action :set_report, :only => [:show, :report_accepted, :report_denied]
+  before_action :set_release
+  before_action :set_report, :only => [:show]
   before_action :set_report_with_current_user, :only => [:edit, :destroy, :update]
 
   def new
@@ -37,25 +37,7 @@ class ReportsController < ApplicationController
     redirect_to [@release, @report]
   end
 
-  def report_accepted
-    @report.accepted_by_project_owner = true
-    @report.save
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def report_denied
-    @report.accepted_by_project_owner = false
-    @report.save
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  private
+private
 
   def set_report
     @report = Report.find(params[:id])

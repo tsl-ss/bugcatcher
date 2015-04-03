@@ -22,13 +22,7 @@ Rails.application.routes.draw do
     resources :reports
   end
 
-  get '/report_accepted/:id',   :controller => "reports",
-                                :action => "report_accepted",
-                                :as => "report_accepted"
-
-  get '/report_denied/:id',     :controller => "reports",
-                                :action => "report_denied",
-                                :as => "report_denied"
+  resource :report_status, only: [:update], controller: "report_status"
 
   get '/leaderboard' => 'leaderboard#index', as: :leaderboard
 end
