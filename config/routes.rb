@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reports do
+  resources :reports, only: [] do
     resources :comments
   end
 
