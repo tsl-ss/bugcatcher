@@ -23,6 +23,5 @@ Rails.application.routes.draw do
   end
 
   resource :report_status, only: [:update], controller: "report_status"
-
-  get '/leaderboard' => 'leaderboard#index', as: :leaderboard
+  resource :leaderboard, only: [:show], controller: "leaderboard"
 end

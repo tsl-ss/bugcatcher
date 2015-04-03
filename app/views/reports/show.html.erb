@@ -1,5 +1,6 @@
 <div class="container container-buffer">
-  <% if @report.release.project.owner == current_user && @report.accepted_by_project_owner == nil  %>
+  <% if @report.release.project.owner == current_user &&
+        @report.accepted_by_project_owner == nil  %>
     <div class="row" id="acceptAlertBox">
       <div class="alert alert-info" role="alert">
         <p class="lead" style="color: white;">
@@ -20,6 +21,7 @@
       </div>
     </div>
   <% end %>
+
   <div class="row">
     <div class="col-md-12">
       <div class="page-header">

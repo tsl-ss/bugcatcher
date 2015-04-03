@@ -12,44 +12,4 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :destroy
   has_many :comments
   has_many :reports, :class_name => "Report", :foreign_key => "author_id"
-
-  def self.leaderboard(interval)
-    leaderboard = []
-
-    User.all.each_with_index do |user, index|
-      result = {}
-      result[:user] = user
-      result[:count] = user.accepted_reports(interval)
-      leaderboard << result
-    end
-
-    leaderboard.sort_by! { |lb| -1*lb[:count] }
-
-    leaderboard.each_with_index do |item, index|
-      prior_item = leaderboard[index-1]
-      if item[:count] == prior_item[:count]
-        item[:rank] = prior_item[:rank]
-      else
-        item[:rank] = index + 1
-      end
-    end
-  end
-
-  def accepted_reports(interval)
-    if interval == :alltime
-      self.reports.accepted.count
-    elsif interval == :monthly
-      self.reports.accepted.where("created_at > ?", (Time.now - 30.days)).count
-    else
-      0
-    end
-  end
-
-  def rank(interval)
-    leaderboard = User.leaderboard(interval)
-
-    i = leaderboard.find_index { |lb| lb[:user] == self }
-
-    leaderboard[i][:rank]
-  end
 end

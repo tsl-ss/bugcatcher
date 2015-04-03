@@ -1,8 +1,7 @@
 class LeaderboardController < ApplicationController
 
-  def index
-    interval = params[:interval].present? ? params[:interval].to_sym : :alltime
-    @leaderboard = User.leaderboard(interval)
+  def show
+    @leaderboard = Leaderboard.fetch(params[:interval].present?)
 
     respond_to do |format|
       format.js
