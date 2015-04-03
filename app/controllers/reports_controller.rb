@@ -19,13 +19,13 @@ class ReportsController < ApplicationController
   def update
     @report = @release.reports.find(params[:id])
     @report.update(report_params)
-    redirect_to release_report_url(@release, @report)
+    redirect_to [@release, @report]
   end
 
   def destroy
     @report.destroy
     flash[:notice] = "Report deleted successfully."
-    redirect_to project_release_url(@release.project, @release)
+    redirect_to [@release.project, @release]
   end
 
   def create
@@ -34,12 +34,13 @@ class ReportsController < ApplicationController
     @report.author = current_user
     @report.save
 
-    redirect_to release_report_url(@release, @report)
+    redirect_to [@release, @report]
   end
 
   def report_accepted
     @report.accepted_by_project_owner = true
     @report.save
+
     respond_to do |format|
       format.js
     end

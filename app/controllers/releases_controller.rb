@@ -1,5 +1,6 @@
 class ReleasesController < ApplicationController
-  before_action :set_project, only: [:new, :create, :edit, :update, :show, :destroy]
+  before_action :set_project, only: [:show]
+  before_action :set_project_for_owner, only: [:new, :create, :edit, :update]
   before_action :set_release, only: [:edit, :show, :update, :close, :destroy]
   before_action :authenticate_user!, :except => [:show]
 
@@ -10,6 +11,7 @@ class ReleasesController < ApplicationController
 
   def create
     @release = @project.releases.open.build(release_params)
+
     if @release.save
       redirect_to [@project, @release]
     else
@@ -40,11 +42,11 @@ class ReleasesController < ApplicationController
 private
 
   def set_project
-    @project = if current_user.present?
-      current_user.projects.find(params[:project_id])
-    else
-      Project.find(params[:project_id])
-    end
+    @project = Project.find(params[:project_id])
+  end
+
+  def set_project_for_owner
+    @project = current_user.projects.find(params[:project_id])
   end
 
   def set_release
