@@ -33,8 +33,12 @@ class Leaderboard
   # we could call includes(:author) and Rails will also load all the
   # users and create the objects for us, making the process of looping
   # through the leaderboard and rendering the associated user for
-  # efficient. So the decision to go with or another depends only on
+  # efficient. So the decision to go with one or another depends only on
   # the necessity to render the user or not.
+
+  # Another possible solution that would be even more elegant than the
+  # following would be using the built-in window function of Postgres
+  # Here it's the idea: http://postgresguide.com/tips/window.html
 
   # def self.fetch(only_current_month = false)
   #   @connection ||= ActiveRecord::Base.connection
