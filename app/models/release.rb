@@ -16,7 +16,7 @@ private
 
   def close_any_open_project_releases
     self.project.releases.open.each do |project_release|
-      project_release.close_release!
+      project_release.update_attribute(:open, false)
     end
   end
 
