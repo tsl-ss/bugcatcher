@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 gem 'devise'
 gem 'rails', '4.2.0'
 gem 'pg'
