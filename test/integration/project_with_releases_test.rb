@@ -2,23 +2,35 @@ require 'test_helper'
 
 class ProjectWithReleasesTest < ActionDispatch::IntegrationTest
 
-  # test "Project - an user creates a new project" do
-  #   # User Login
-  #   daniel = users :daniel
-  #   post_via_redirect "/users/sign_in", user: {email: daniel.email, password: '12345678'}
+  def test_user_can_add_a_project_and_then_add_a_release
+    daniel = users :daniel
 
-  #   # create the project
-  #   post_via_redirect "/projects", project: { name: "LanternHQ", url: 'https://lanternhq.com', description: 'LanternHQ - Teach your best class' }
-  #   assert_response :success
-  #   project = Project.find_by_name!('LanternHQ')
-  #   assert_equal "/projects/#{project.id}", path
-  #   assert assigns(:project)
-  # end
+    # SIGN IN
+    post_via_redirect "/users/sign_in", user: { email: daniel.email, password: '12345678'}
+    assert_equal "/projects", path
 
-  # test "View a project" do
-  #   project = projects :lantern
-  #   get "/projects/#{project.id}"
-  #   assert_equal assigns(:project), project
-  # end
+    # CREATE PROJECT
+    post_via_redirect "/projects", project: {
+      name: "LanternHQ",
+      url: 'https://lanternhq.com',
+      description: 'LanternHQ - Teach your best class'
+    }
+
+    assert_response :success
+    project = Project.find_by_name!('LanternHQ')
+    assert_equal "/projects/#{project.id}", path
+    assert assigns(:project)
+
+    # CREATE RELEASE
+    post_via_redirect "/projects/#{project.id}/releases", release: {
+      title: "Release 1",
+      description: "New version..."
+    }
+
+    assert_response :success
+    release = project.releases.find_by_title!('Release 1')
+    assert_equal "/projects/#{project.id}/releases/#{release.id}", path
+    assert assigns(:release)
+  end
 
 end
