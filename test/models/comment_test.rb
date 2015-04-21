@@ -21,18 +21,4 @@ class CommentTest < ActiveSupport::TestCase
     new_comment.save!
   end
 
-  def test_user_and_report_comment_count
-    user = users(:daniel)
-    user_comment_count = user.comments.count
-
-    report = reports(:first_report)
-    report_comment_count = report.comments.count
-
-    new_comment = Comment.new(:text => "lorem", :user => user, :report => report)
-    new_comment.save!
-
-    assert_equal(user_comment_count + 1, user.comments.count)
-    assert_equal(report_comment_count + 1, report.comments.count)
-  end
-
 end
