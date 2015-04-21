@@ -1,2 +1,7 @@
 first_report:
   content: "This is the content of the first report"
+  accepted_by_project_owner: true
+
+second_report:
+  content: "This is the content of the second report"
+  accepted_by_project_owner: false
