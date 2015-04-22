@@ -7,6 +7,8 @@ class Report < ActiveRecord::Base
 
   scope :accepted, -> { where(accepted_by_project_owner: true) }
 
+  validates_presence_of :content, :author, :release
+
   def accepted?
     accepted_by_project_owner?
   end

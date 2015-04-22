@@ -2,6 +2,11 @@ require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
 
+  # Very nice - if you want to test for validations that's fine
+  # I would just test the most important ones (and specially the custom ones)
+  # Other than the validations I don't think I would test anything else on
+  # comments model.
+
   def test_required_attributes_for_creation
     new_comment = Comment.new
 
