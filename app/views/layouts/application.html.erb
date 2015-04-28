@@ -35,13 +35,12 @@
             <span class="icon-bar"></span>
           </button>
 
-          <h2>
-            <%= link_to "Bug Catcher", root_path, class: "navbar-brand" %>
-          </h2>
+
+          <%= link_to "Bug Catcher", root_path, class: "navbar-brand" %>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav">
             <% if current_user.present? %>
               <li><%= link_to "#{current_user.email}", profile_path %></li>
               <li><%= link_to "Projects", projects_path %></li>

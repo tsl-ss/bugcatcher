@@ -1,12 +1,12 @@
 <div class="jumbotron home-jumbotron">
-  <div class="container">
+  <div class="container" style="max-width: 900px;">
     <div class="row">
       <%= render(current_user.present? ? "home_jumbo_for_user" : "home_jumbo_for_guest") %>
     </div>
   </div>
 </div>
 
-<div class="service-description container" style="max-width: 800px;">
+<div class="service-description container">
   <div class="row">
     <div class="col-sm-3">
       <%= image_tag "for-devs.jpg", style: "width: 100%;" %>
@@ -56,13 +56,11 @@
   <div class="container">
     <div class="row popular-projects">
       <div class="col-sm-12">
-        <div class="page-header text-center">
-          <h3>Featured projects</h3>
-        </div>
+        <h3>Featured projects</h3>
       </div>
 
       <% @projects.each do |project| %>
-        <div class="col-sm-4">
+        <div class="col-sm-2">
           <div class="thumbnail">
             <%= link_to image_tag(project.logo.url(:medium)), project %>
             <div class="caption">
@@ -73,8 +71,6 @@
       <% end %>
 
       <div class="col-sm-12">
-        <hr/>
-
         <p class="text-center">
           <%= link_to "See all projects...", projects_path %>
         </p>
